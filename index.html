@@ -621,8 +621,8 @@
             feedbackOutputDiv.innerHTML = ''; // Clear previous feedback
             submitBtn.classList.add('hidden'); // Hide submit button until question is loaded
 
-            // Emphasize strict JSON format in the prompt
-            const prompt = "Generate a multiple-choice quiz question about a fundamental AI term for a business leader. Provide the term, a question, 3 plausible but distinct answer options (A, B, C), and indicate the correct answer. Also, provide a short explanation for the correct answer. The response MUST be a valid JSON object with keys: `term` (string), `question` (string), `options` (array of 3 strings, e.g., [\"A) Option A\", \"B) Option B\", \"C) Option C\"]), `correctAnswer` (string, 'A', 'B', or 'C'), `explanation` (string). Example: {\"term\": \"Machine Learning\", \"question\": \"What is Machine Learning?\", \"options\": [\"A) Programming computers to learn from data\", \"B) Designing robot hardware\", \"C) Building databases\"], \"correctAnswer\": \"A\", \"explanation\": \"Machine Learning is a subset of AI that enables systems to learn from data without explicit programming.\" }";
+            // Emphasize stricter JSON format in the prompt to reduce malformed responses
+            const prompt = "Generate a single multiple-choice quiz question for a business leader on a fundamental AI term. Output strictly as JSON: {\"term\": \"string\", \"question\": \"string\", \"options\": [\"A) Option\", \"B) Option\", \"C) Option\"], \"correctAnswer\": \"A|B|C\", \"explanation\": \"string\"}. Provide a simple, concise example for options like: [\"A) Learning from data\", \"B) Robots\", \"C) Databases\"].";
             
             // callGeminiAPI now handles JSON.parse internally when isJson is true
             const quizResult = await callGeminiAPI(prompt, true); 
@@ -630,7 +630,7 @@
             if (quizResult) { // quizResult is now already a parsed JSON object or null
                 // Validate essential fields after successful parsing
                 if (!quizResult.question || !Array.isArray(quizResult.options) || quizResult.options.length < 3 || !quizResult.correctAnswer || !quizResult.explanation) {
-                    feedbackOutputDiv.innerHTML = `<p class="text-red-500">Error: Received incomplete or malformed quiz data from the AI. Please try again.</p>`;
+                    feedbackOutputDiv.innerHTML = `<p class="text-red-500">Error: Received incomplete or malformed quiz data from the AI. The AI did not provide all required fields or options. Please try again.</p>`;
                     feedbackOutputDiv.classList.remove('hidden');
                     return; // Stop execution if data is invalid
                 }
