@@ -1,689 +1,673 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Leadership: A Personalized Training Roadmap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .kpi-number {
+            font-weight: 800;
+            color: #00A6FB;
+            line-height: 1;
+        }
+        .phase-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0582CA;
+        }
+        h1, h2, h3 {
+            color: #003554;
+        }
+        .ai-button {
+            background-color: #0582CA;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .ai-button:hover {
+            background-color: #006494;
+        }
+        .quiz-option input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+        .quiz-option label {
+            cursor: pointer;
+        }
+        .card a {
+            display: block; /* Make the whole card clickable */
+            text-decoration: none; /* Remove underline from links */
+            color: inherit; /* Inherit text color from parent */
+        }
+        .card a:hover h3 {
+            color: #006494; /* Darken header on hover for visual feedback */
+        }
+    </style>
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;AI Leadership: A Personalized Training Roadmap&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #F0F4F8;<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.chart-container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 600px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-left: auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-right: auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: 320px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-height: 400px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@media (min-width: 768px) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>.chart-container {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>height: 400px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.card {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0.75rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s ease, box-shadow 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.card:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-5px);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.kpi-number {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 800;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #00A6FB;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.phase-arrow {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #0582CA;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>h1, h2, h3 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #003554;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.ai-button {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #0582CA;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.75rem 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.ai-button:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #006494;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.quiz-option input[type="radio"] {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-right: 0.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.quiz-option label {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.card a {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: block; /* Make the whole card clickable */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none; /* Remove underline from links */</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: inherit; /* Inherit text color from parent */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.card a:hover h3 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #006494; /* Darken header on hover for visual feedback */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="text-gray-700"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container mx-auto p-4 md:p-8"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;header class="text-center mb-12"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-4xl md:text-6xl font-extrabold mb-2"&gt;Your Roadmap to AI Leadership&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"&gt;A personalized micro-learning plan for business leaders in Operations, Customer Success, and Salesforce.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="journey" class="mb-16"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-center mb-8"&gt;The 3-Phase Journey&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card p-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-xl mb-1"&gt;Phase 1&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="font-semibold text-lg text-sky-600"&gt;Fundamentals&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm"&gt;2-4 Weeks&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="phase-arrow text-4xl hidden md:block"&gt;&amp;rarr;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card p-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-xl mb-1"&gt;Phase 2&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="font-semibold text-lg text-sky-700"&gt;Domain Application&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm"&gt;4-6 Weeks&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="phase-arrow text-4xl hidden md:block"&gt;&amp;rarr;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card p-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="font-bold text-xl mb-1"&gt;Phase 3&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="font-semibold text-lg text-sky-800"&gt;Practical Projects&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm"&gt;Ongoing&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;main class="space-y-16"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;section id="phase1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="order-2 md:order-1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h2 class="text-3xl font-bold mb-4"&gt;Phase 1: AI Fundamentals &amp; Business Impact&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="mb-6"&gt;The goal is to build a strong foundation. Understand core AI concepts, key terminology, and how AI creates tangible value in a business context. This phase is about learning the language of AI to inform strategic decisions.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold text-xl mb-4"&gt;Key Learning Modules&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;ul class="list-disc list-inside space-y-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;li&gt;Differentiating AI, Machine Learning &amp; Deep Learning&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;li&gt;AI Use Cases in Sales, Marketing, and Operations&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;li&gt;Data Governance and Quality for AI&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;li&gt;Understanding AI Ethics and Bias&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="card order-1 md:order-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="chart-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;canvas id="phase1Chart"&gt;&lt;/canvas&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-center mt-4 font-semibold text-gray-600"&gt;Resource Mix for Phase 1&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;section id="ai-interactive-tools"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="card grid grid-cols-1 md:grid-cols-2 gap-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="font-bold text-xl mb-4 text-sky-800"&gt;✨ AI Concept Explainer&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="mb-4"&gt;Enter an AI term and get a concise, business-focused explanation directly from an AI expert.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="aiTermInput" placeholder="e.g., Machine Learning" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-sky-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button id="explainAiTermBtn" class="ai-button w-full"&gt;Explain Term&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="aiExplanationLoading" class="hidden text-center mt-4 text-gray-500"&gt;Loading...&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="aiExplanationOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="font-bold text-xl mb-4 text-sky-800"&gt;✨ General AI Use Case Idea Generator&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="mb-4"&gt;Click below to brainstorm a new, practical AI use case for business operations.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button id="generateUseCaseBtn" class="ai-button w-full"&gt;Generate Use Case Idea&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="useCaseLoading" class="hidden text-center mt-4 text-gray-500"&gt;Loading...&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="useCaseOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="md:col-span-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="font-bold text-xl mb-4 text-sky-800"&gt;✨ Role-Specific AI Use Case Generator&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="mb-4"&gt;Enter a specific role (e.g., "Customer Success Manager") to get a tailored AI use case idea.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="roleInput" placeholder="e.g., Sales Operations Lead" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-sky-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button id="generateRoleUseCaseBtn" class="ai-button w-full"&gt;Generate Role-Specific Idea&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="roleUseCaseLoading" class="hidden text-center mt-4 text-gray-500"&gt;Loading...&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="roleUseCaseOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="md:col-span-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="font-bold text-xl mb-4 text-sky-800"&gt;✨ Quick AI Terminology Quiz&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="mb-4"&gt;Test your knowledge with a multiple-choice question on AI fundamentals!&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button id="generateQuizBtn" class="ai-button w-full mb-4"&gt;Generate Quiz Question&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="quizLoading" class="hidden text-center mt-4 text-gray-500"&gt;Loading...&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="quizQuestionOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200 hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="font-semibold mb-3" id="quizQuestionText"&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div id="quizOptions" class="space-y-2"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="hidden" id="correctAnswer" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button id="submitQuizBtn" class="ai-button mt-4 w-full"&gt;Submit Answer&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div id="quizFeedbackOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200 hidden"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;section id="phase2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="chart-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;canvas id="phase2Chart"&gt;&lt;/canvas&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-center mt-4 font-semibold text-gray-600"&gt;Domain-Specific Focus Areas&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h2 class="text-3xl font-bold mb-4"&gt;Phase 2: AI in Your Domain&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="mb-6"&gt;This phase deepens your understanding of AI applications directly relevant to your expertise in RevOps, SalesOps, and Salesforce. The focus shifts from theory to practical, role-specific knowledge.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold text-xl mb-4"&gt;Critical Resources&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;ul class="space-y-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;li class="flex items-center"&gt;&lt;span class="text-2xl mr-3"&gt;☁️&lt;/span&gt;&lt;div&gt;&lt;strong class="text-sky-700"&gt;Salesforce Trailhead:&lt;/strong&gt; Master Einstein AI basics and business applications.&lt;/div&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;li class="flex items-center"&gt;&lt;span class="text-2xl mr-3"&gt;💬&lt;/span&gt;&lt;div&gt;&lt;strong class="text-sky-700"&gt;Generative AI Tools:&lt;/strong&gt; Practice prompt engineering on ChatGPT &amp; Google Gemini.&lt;/div&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;li class="flex items-center"&gt;&lt;span class="text-2xl mr-3"&gt;📺&lt;/span&gt;&lt;div&gt;&lt;strong class="text-sky-700"&gt;Targeted Webinars:&lt;/strong&gt; Learn from industry leaders like Gong and HubSpot.&lt;/div&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;section id="phase3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="order-2 md:order-1"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h2 class="text-3xl font-bold mb-4"&gt;Phase 3: Practical Application&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="mb-6"&gt;Knowledge becomes power through application. This ongoing phase is about continuously applying what you've learned to solve real-world business problems, turning theoretical understanding into strategic impact.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold text-xl mb-4"&gt;The Application Cycle&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="text-center"&gt;&lt;div class="font-bold p-3 bg-sky-100 rounded-full w-24 h-24 flex items-center justify-center"&gt;Identify Pain Point&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="phase-arrow text-2xl"&gt;&amp;darr;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="text-center"&gt;&lt;div class="font-bold p-3 bg-sky-200 rounded-full w-24 h-24 flex items-center justify-center"&gt;Research Solutions&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;div class="phase-arrow text-2xl"&gt;&amp;darr;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="text-center"&gt;&lt;div class="font-bold p-3 bg-sky-300 rounded-full w-24 h-24 flex items-center justify-center"&gt;Experiment w/ Tools&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                 </span>&lt;div class="phase-arrow text-2xl"&gt;&amp;darr;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="text-center"&gt;&lt;div class="font-bold p-3 bg-sky-400 rounded-full w-24 h-24 flex items-center justify-center text-white"&gt;Refine &amp; Scale&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="card order-1 md:order-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>&lt;div class="chart-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                             </span>&lt;canvas id="platformsChart"&gt;&lt;/canvas&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-center mt-4 font-semibold text-gray-600"&gt;Essential AI Platform Categories&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;section id="platforms" class="mb-12"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>&lt;h2 class="text-3xl font-bold text-center mb-8"&gt;Your AI Leadership Arsenal&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="https://www.salesforce.com/products/einstein/overview/" target="_blank"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold text-xl mb-3 text-sky-800"&gt;1. Salesforce Einstein AI&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p&gt;Paramount for your background. Master the native AI capabilities within the ecosystem you already command.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="https://gemini.google.com/" target="_blank"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold text-xl mb-3 text-sky-700"&gt;2. Generative AI Tools&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p&gt;Proficiency in ChatGPT, Gemini, and Claude for content, analysis, and communication is non-negotiable for modern leaders.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="https://www.gong.io/" target="_blank"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold text-xl mb-3 text-sky-600"&gt;3. RevOps Platforms&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p&gt;Understand AI in Gong, Clari, and Outreach to grasp sales conversation intelligence and forecasting.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="https://www.zendesk.com/service/ai/" target="_blank"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold text-xl mb-3 text-sky-800"&gt;4. Customer Service AI&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p&gt;Familiarize with AI in Zendesk, Intercom, and Drift for ticketing, chatbots, and agent assistance.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="https://www.tableau.com/products/ai" target="_blank"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold text-xl mb-3 text-sky-700"&gt;5. Business Intelligence (BI)&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p&gt;Leverage AI features within Tableau and Power BI for natural language querying and deeper data insights.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="https://cloud.google.com/vertex-ai" target="_blank"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold text-xl mb-3 text-sky-600"&gt;6. Cloud AI Platforms&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p&gt;Grasp the business purpose of Google Vertex AI, Azure AI, and AWS SageMaker to understand deployment potential.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/main&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const tooltipPlugin = {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>plugins: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>tooltip: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>callbacks: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>title: function(tooltipItems) {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>const item = tooltipItems[0];</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>let label = item.chart.data.labels[item.dataIndex];</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>if (Array.isArray(label)) {</p>
-<p class="p1"><span class="Apple-converted-space">                              </span>return label.join(' ');</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                              </span>return label;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function wrapText(text, maxLen = 16) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (text.length &lt;= maxLen) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return text;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const words = text.split(' ');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let currentLine = '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const lines = [];</p>
-<p class="p1"><span class="Apple-converted-space">            </span>words.forEach(word =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if ((currentLine + ' ' + word).trim().length &gt; maxLen) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>lines.push(currentLine.trim());</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>currentLine = word;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>currentLine = (currentLine + ' ' + word).trim();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (currentLine) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>lines.push(currentLine.trim());</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return lines;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const colors = {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>blue800: '#003554',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>blue700: '#006494',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>blue600: '#0582CA',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>blue500: '#00A6FB',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>gray200: '#E5E7EB',</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const phase1ChartCtx = document.getElementById('phase1Chart').getContext('2d');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>new Chart(phase1ChartCtx, {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: 'doughnut',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>labels: ['Online Courses', 'YouTube Explainers', 'Webinars &amp; Events'],</p>
-<p class="p1"><span class="Apple-converted-space">                </span>datasets: [{</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Resource Mix',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data: [50, 35, 15],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: [colors.blue700, colors.blue600, colors.blue500],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>borderColor: '#FFFFFF',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>borderWidth: 4,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>hoverOffset: 4</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>responsive: true,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>maintainAspectRatio: false,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>plugins: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>legend: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>position: 'bottom',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>...tooltipPlugin.plugins</p>
-<p class="p1"><span class="Apple-converted-space">                </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                </span>cutout: '60%'</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const phase2Labels = [</p>
-<p class="p1"><span class="Apple-converted-space">            </span>'AI in CRM (Salesforce)',<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>'Predictive Analytics',<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>'Conversational AI',<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>'Process Automation',<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>'AI for Data Analysis',<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>'Prompt Engineering'</p>
-<p class="p1"><span class="Apple-converted-space">        </span>].map(label =&gt; wrapText(label));</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const phase2ChartCtx = document.getElementById('phase2Chart').getContext('2d');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>new Chart(phase2ChartCtx, {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: 'bar',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>labels: phase2Labels,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>datasets: [{</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Focus Area Importance',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data: [95, 85, 75, 80, 90, 88],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: [colors.blue800, colors.blue700, colors.blue600, colors.blue700, colors.blue800, colors.blue600],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>borderRadius: 4,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>indexAxis: 'y',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>responsive: true,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>maintainAspectRatio: false,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>plugins: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>legend: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>display: false</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>...tooltipPlugin.plugins</p>
-<p class="p1"><span class="Apple-converted-space">                </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                </span>scales: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>x: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>beginAtZero: true,</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>grid: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>display: false</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>y: {</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>grid: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>display: false</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const platformsChartCtx = document.getElementById('platformsChart').getContext('2d');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>new Chart(platformsChartCtx, {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>type: 'radar',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>labels: [ 'Salesforce AI', ['Generative AI', 'Tools'], 'RevOps AI', ['Customer', 'Service AI'], 'BI with AI', ['Cloud AI', 'Platforms']],</p>
-<p class="p1"><span class="Apple-converted-space">                </span>datasets: [{</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Priority for Leadership',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data: [10, 9, 8, 7, 7, 6],</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: 'rgba(5, 130, 202, 0.2)',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>borderColor: colors.blue600,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>pointBackgroundColor: colors.blue600,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>pointBorderColor: '#fff',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>pointHoverBackgroundColor: '#fff',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>pointHoverBorderColor: colors.blue600,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>borderWidth: 2</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>responsive: true,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>maintainAspectRatio: false,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>plugins: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>legend: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>position: 'bottom'</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>...tooltipPlugin.plugins</p>
-<p class="p1"><span class="Apple-converted-space">                </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                </span>scales: {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>r: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>angleLines: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>display: true</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>suggestedMin: 0,</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>suggestedMax: 10,</p>
-<p class="p1"><span class="Apple-converted-space">                         </span>pointLabels: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>font: {</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>size: 12</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('explainAiTermBtn').addEventListener('click', async () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const term = document.getElementById('aiTermInput').value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const outputDiv = document.getElementById('aiExplanationOutput');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const loadingDiv = document.getElementById('aiExplanationLoading');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>outputDiv.innerHTML = '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (!term) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>outputDiv.innerHTML = '&lt;p class="text-red-500"&gt;Please enter an AI term.&lt;/p&gt;';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>loadingDiv.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>outputDiv.classList.add('hidden');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const prompt = `Explain "${term}" in a concise way for a business leader, focusing on its practical application. Keep it under 50 words.`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>let chatHistory = [];</p>
-<p class="p1"><span class="Apple-converted-space">                </span>chatHistory.push({ role: "user", parts: [{ text: prompt }] });</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const payload = { contents: chatHistory };</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const apiKey = "";<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const response = await fetch(apiUrl, {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>headers: { 'Content-Type': 'application/json' },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>body: JSON.stringify(payload)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const result = await response.json();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (result.candidates &amp;&amp; result.candidates.length &gt; 0 &amp;&amp;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>result.candidates[0].content &amp;&amp; result.candidates[0].content.parts &amp;&amp;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>result.candidates[0].content.parts.length &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const text = result.candidates[0].content.parts[0].text;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>outputDiv.innerHTML = `&lt;p&gt;${text}&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>outputDiv.innerHTML = '&lt;p class="text-red-500"&gt;Could not get an explanation. Please try again.&lt;/p&gt;';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} catch (error) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>console.error('Error fetching AI explanation:', error);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>outputDiv.innerHTML = `&lt;p class="text-red-500"&gt;Error: ${error.message}. Please try again.&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} finally {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>loadingDiv.classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>outputDiv.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('generateUseCaseBtn').addEventListener('click', async () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const outputDiv = document.getElementById('useCaseOutput');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const loadingDiv = document.getElementById('useCaseLoading');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>outputDiv.innerHTML = '';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>loadingDiv.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>outputDiv.classList.add('hidden');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const prompt = "Generate one unique and practical AI use case for a business leader with experience in Salesforce, RevOps, SalesOps, or Customer Success. The use case should focus on improving operations or customer engagement. Provide only the use case description, no intro or outro. Keep it concise.";</p>
-<p class="p1"><span class="Apple-converted-space">                </span>let chatHistory = [];</p>
-<p class="p1"><span class="Apple-converted-space">                </span>chatHistory.push({ role: "user", parts: [{ text: prompt }] });</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const payload = { contents: chatHistory };</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const apiKey = "";</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const response = await fetch(apiUrl, {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>headers: { 'Content-Type': 'application/json' },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>body: JSON.stringify(payload)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const result = await response.json();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (result.candidates &amp;&amp; result.candidates.length &gt; 0 &amp;&amp;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>result.candidates[0].content &amp;&amp; result.candidates[0].content.parts &amp;&amp;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>result.candidates[0].content.parts.length &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const text = result.candidates[0].content.parts[0].text;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>outputDiv.innerHTML = `&lt;p&gt;${text}&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>outputDiv.innerHTML = '&lt;p class="text-red-500"&gt;Could not generate a use case. Please try again.&lt;/p&gt;';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} catch (error) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>console.error('Error generating use case:', error);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>outputDiv.innerHTML = `&lt;p class="text-red-500"&gt;Error: ${error.message}. Please try again.&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} finally {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>loadingDiv.classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>outputDiv.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('generateRoleUseCaseBtn').addEventListener('click', async () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const role = document.getElementById('roleInput').value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const outputDiv = document.getElementById('roleUseCaseOutput');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const loadingDiv = document.getElementById('roleUseCaseLoading');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>outputDiv.innerHTML = '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (!role) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>outputDiv.innerHTML = '&lt;p class="text-red-500"&gt;Please enter a role.&lt;/p&gt;';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>loadingDiv.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>outputDiv.classList.add('hidden');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const prompt = `Generate one unique and practical AI use case for a business leader in the role of "${role}", with experience in Salesforce, RevOps, SalesOps, or Customer Success. The use case should focus on improving operations or customer engagement. Provide only the use case description, no intro or outro. Keep it concise.`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>let chatHistory = [];</p>
-<p class="p1"><span class="Apple-converted-space">                </span>chatHistory.push({ role: "user", parts: [{ text: prompt }] });</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const payload = { contents: chatHistory };</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const apiKey = "";</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const response = await fetch(apiUrl, {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>headers: { 'Content-Type': 'application/json' },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>body: JSON.stringify(payload)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const result = await response.json();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (result.candidates &amp;&amp; result.candidates.length &gt; 0 &amp;&amp;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>result.candidates[0].content &amp;&amp; result.candidates[0].content.parts &amp;&amp;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>result.candidates[0].content.parts.length &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const text = result.candidates[0].content.parts[0].text;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>outputDiv.innerHTML = `&lt;p&gt;${text}&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>outputDiv.innerHTML = '&lt;p class="text-red-500"&gt;Could not generate a use case for this role. Please try again.&lt;/p&gt;';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} catch (error) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>console.error('Error generating role-specific use case:', error);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>outputDiv.innerHTML = `&lt;p class="text-red-500"&gt;Error: ${error.message}. Please try again.&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} finally {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>loadingDiv.classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>outputDiv.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>let currentQuizData = null; // Store quiz data</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('generateQuizBtn').addEventListener('click', async () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const questionOutputDiv = document.getElementById('quizQuestionOutput');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const questionTextSpan = document.getElementById('quizQuestionText');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const optionsDiv = document.getElementById('quizOptions');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const feedbackOutputDiv = document.getElementById('quizFeedbackOutput');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const loadingDiv = document.getElementById('quizLoading');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const submitBtn = document.getElementById('submitQuizBtn');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>questionOutputDiv.classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>feedbackOutputDiv.classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>loadingDiv.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>optionsDiv.innerHTML = '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>feedbackOutputDiv.innerHTML = '';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const prompt = "Generate a multiple-choice quiz question about a fundamental AI term for a business leader. Provide the term, a question, 3 plausible but distinct answer options (A, B, C), and indicate the correct answer. Also, provide a short explanation for the correct answer. Format the response as a JSON object with keys: `term`, `question`, `options` (an array of strings), `correctAnswer` (the letter A, B, or C), `explanation`. Example: {\"term\": \"Machine Learning\", \"question\": \"What is Machine Learning?\", \"options\": [\"A) Programming computers to learn from data\", \"B) Designing robot hardware\", \"C) Building databases\"], \"correctAnswer\": \"A\", \"explanation\": \"Machine Learning is a subset of AI that enables systems to learn from data without explicit programming.\" }";</p>
-<p class="p1"><span class="Apple-converted-space">                </span>let chatHistory = [];</p>
-<p class="p1"><span class="Apple-converted-space">                </span>chatHistory.push({ role: "user", parts: [{ text: prompt }] });</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const payload = {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>contents: chatHistory,</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>generationConfig: {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>responseMimeType: "application/json",</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>responseSchema: {</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>type: "OBJECT",</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>properties: {</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>"term": { "type": "STRING" },</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>"question": { "type": "STRING" },</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>"options": { "type": "ARRAY", "items": { "type": "STRING" } },</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>"correctAnswer": { "type": "STRING" },</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>"explanation": { "type": "STRING" }</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>};</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const apiKey = "";</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const response = await fetch(apiUrl, {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>headers: { 'Content-Type': 'application/json' },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>body: JSON.stringify(payload)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const result = await response.json();</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (result.candidates &amp;&amp; result.candidates.length &gt; 0 &amp;&amp;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>result.candidates[0].content &amp;&amp; result.candidates[0].content.parts &amp;&amp;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>result.candidates[0].content.parts.length &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const jsonString = result.candidates[0].content.parts[0].text;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>currentQuizData = JSON.parse(jsonString);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>questionTextSpan.textContent = currentQuizData.question;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>currentQuizData.options.forEach((option, index) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const optionId = `option${index}`;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>optionsDiv.innerHTML += `</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="quiz-option"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;input type="radio" id="${optionId}" name="quizOption" value="${option[0]}"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;label for="${optionId}"&gt;${option}&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('correctAnswer').value = currentQuizData.correctAnswer;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>questionOutputDiv.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>submitBtn.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>feedbackOutputDiv.innerHTML = '&lt;p class="text-red-500"&gt;Could not generate a quiz question. Please try again.&lt;/p&gt;';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>feedbackOutputDiv.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} catch (error) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>console.error('Error fetching quiz question:', error);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>feedbackOutputDiv.innerHTML = `&lt;p class="text-red-500"&gt;Error: ${error.message}. Please try again.&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>feedbackOutputDiv.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} finally {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>loadingDiv.classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('submitQuizBtn').addEventListener('click', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const selectedOption = document.querySelector('input[name="quizOption"]:checked');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const feedbackOutputDiv = document.getElementById('quizFeedbackOutput');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>feedbackOutputDiv.innerHTML = '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>feedbackOutputDiv.classList.remove('hidden');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (!selectedOption) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>feedbackOutputDiv.innerHTML = '&lt;p class="text-red-500"&gt;Please select an answer.&lt;/p&gt;';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const userAnswer = selectedOption.value;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const correctAnswer = document.getElementById('correctAnswer').value;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (userAnswer === correctAnswer) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>feedbackOutputDiv.innerHTML = `&lt;p class="font-bold text-green-700"&gt;Correct! 🎉&lt;/p&gt;&lt;p class="mt-2"&gt;${currentQuizData.explanation}&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>feedbackOutputDiv.innerHTML = `&lt;p class="font-bold text-red-700"&gt;Incorrect. The correct answer was ${correctAnswer}.&lt;/p&gt;&lt;p class="mt-2"&gt;${currentQuizData.explanation}&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<body class="text-gray-700">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-2">Your Roadmap to AI Leadership</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">A personalized micro-learning plan for business leaders in Operations, Customer Success, and Salesforce.</p>
+        </header>
+
+        <section id="journey" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">The 3-Phase Journey</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center text-center">
+                <div class="card p-4">
+                    <h3 class="font-bold text-xl mb-1">Phase 1</h3>
+                    <p class="font-semibold text-lg text-sky-600">Fundamentals</p>
+                    <p class="text-sm">2-4 Weeks</p>
+                </div>
+                <div class="phase-arrow text-4xl hidden md:block">&rarr;</div>
+                <div class="card p-4">
+                    <h3 class="font-bold text-xl mb-1">Phase 2</h3>
+                    <p class="font-semibold text-lg text-sky-700">Domain Application</p>
+                    <p class="text-sm">4-6 Weeks</p>
+                </div>
+                <div class="phase-arrow text-4xl hidden md:block">&rarr;</div>
+                <div class="card p-4">
+                    <h3 class="font-bold text-xl mb-1">Phase 3</h3>
+                    <p class="font-semibold text-lg text-sky-800">Practical Projects</p>
+                    <p class="text-sm">Ongoing</p>
+                </div>
+            </div>
+        </section>
+
+        <main class="space-y-16">
+
+            <section id="phase1">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="order-2 md:order-1">
+                        <h2 class="text-3xl font-bold mb-4">Phase 1: AI Fundamentals & Business Impact</h2>
+                        <p class="mb-6">The goal is to build a strong foundation. Understand core AI concepts, key terminology, and how AI creates tangible value in a business context. This phase is about learning the language of AI to inform strategic decisions.</p>
+                        <div class="card">
+                            <h3 class="font-bold text-xl mb-4">Key Learning Modules</h3>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Differentiating AI, Machine Learning & Deep Learning</li>
+                                <li>AI Use Cases in Sales, Marketing, and Operations</li>
+                                <li>Data Governance and Quality for AI</li>
+                                <li>Understanding AI Ethics and Bias</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card order-1 md:order-2">
+                         <div class="chart-container">
+                            <canvas id="phase1Chart"></canvas>
+                        </div>
+                        <p class="text-center mt-4 font-semibold text-gray-600">Resource Mix for Phase 1</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ai-interactive-tools">
+                <div class="card grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ AI Concept Explainer</h3>
+                        <p class="mb-4">Enter an AI term and get a concise, business-focused explanation directly from an AI expert.</p>
+                        <input type="text" id="aiTermInput" placeholder="e.g., Machine Learning" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-sky-500">
+                        <button id="explainAiTermBtn" class="ai-button w-full">Explain Term</button>
+                        <div id="aiExplanationLoading" class="hidden text-center mt-4 text-gray-500">Loading...</div>
+                        <div id="aiExplanationOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"></div>
+                    </div>
+                     <div>
+                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ General AI Use Case Idea Generator</h3>
+                        <p class="mb-4">Click below to brainstorm a new, practical AI use case for business operations.</p>
+                        <button id="generateUseCaseBtn" class="ai-button w-full">Generate Use Case Idea</button>
+                        <div id="useCaseLoading" class="hidden text-center mt-4 text-gray-500">Loading...</div>
+                        <div id="useCaseOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"></div>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ Role-Specific AI Use Case Generator</h3>
+                        <p class="mb-4">Enter a specific role (e.g., "Customer Success Manager") to get a tailored AI use case idea.</p>
+                        <input type="text" id="roleInput" placeholder="e.g., Sales Operations Lead" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-sky-500">
+                        <button id="generateRoleUseCaseBtn" class="ai-button w-full">Generate Role-Specific Idea</button>
+                        <div id="roleUseCaseLoading" class="hidden text-center mt-4 text-gray-500">Loading...</div>
+                        <div id="roleUseCaseOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"></div>
+                    </div>
+                    <div class="md:col-span-2">
+                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ Quick AI Terminology Quiz</h3>
+                        <p class="mb-4">Test your knowledge with a multiple-choice question on AI fundamentals!</p>
+                        <button id="generateQuizBtn" class="ai-button w-full mb-4">Generate Quiz Question</button>
+                        <div id="quizLoading" class="hidden text-center mt-4 text-gray-500">Loading...</div>
+                        <div id="quizQuestionOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200 hidden">
+                            <p class="font-semibold mb-3" id="quizQuestionText"></p>
+                            <div id="quizOptions" class="space-y-2"></div>
+                            <input type="hidden" id="correctAnswer" />
+                            <button id="submitQuizBtn" class="ai-button mt-4 w-full">Submit Answer</button>
+                        </div>
+                        <div id="quizFeedbackOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200 hidden"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="phase2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="card">
+                            <div class="chart-container">
+                                <canvas id="phase2Chart"></canvas>
+                            </div>
+                            <p class="text-center mt-4 font-semibold text-gray-600">Domain-Specific Focus Areas</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold mb-4">Phase 2: AI in Your Domain</h2>
+                        <p class="mb-6">This phase deepens your understanding of AI applications directly relevant to your expertise in RevOps, SalesOps, and Salesforce. The focus shifts from theory to practical, role-specific knowledge.</p>
+                         <div class="card">
+                            <h3 class="font-bold text-xl mb-4">Critical Resources</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center"><span class="text-2xl mr-3">☁️</span><div><strong class="text-sky-700">Salesforce Trailhead:</strong> Master Einstein AI basics and business applications.</div></li>
+                                <li class="flex items-center"><span class="text-2xl mr-3">💬</span><div><strong class="text-sky-700">Generative AI Tools:</strong> Practice prompt engineering on ChatGPT & Google Gemini.</div></li>
+                                <li class="flex items-center"><span class="text-2xl mr-3">📺</span><div><strong class="text-sky-700">Targeted Webinars:</strong> Learn from industry leaders like Gong and HubSpot.</div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="phase3">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="order-2 md:order-1">
+                        <h2 class="text-3xl font-bold mb-4">Phase 3: Practical Application</h2>
+                        <p class="mb-6">Knowledge becomes power through application. This ongoing phase is about continuously applying what you've learned to solve real-world business problems, turning theoretical understanding into strategic impact.</p>
+                        <div class="card">
+                            <h3 class="font-bold text-xl mb-4">The Application Cycle</h3>
+                             <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-2">
+                                <div class="text-center"><div class="font-bold p-3 bg-sky-100 rounded-full w-24 h-24 flex items-center justify-center">Identify Pain Point</div></div>
+                                <div class="phase-arrow text-2xl">&darr;</div>
+                                <div class="text-center"><div class="font-bold p-3 bg-sky-200 rounded-full w-24 h-24 flex items-center justify-center">Research Solutions</div></div>
+                                 <div class="phase-arrow text-2xl">&darr;</div>
+                                <div class="text-center"><div class="font-bold p-3 bg-sky-300 rounded-full w-24 h-24 flex items-center justify-center">Experiment w/ Tools</div></div>
+                                 <div class="phase-arrow text-2xl">&darr;</div>
+                                <div class="text-center"><div class="font-bold p-3 bg-sky-400 rounded-full w-24 h-24 flex items-center justify-center text-white">Refine & Scale</div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card order-1 md:order-2">
+                         <div class="chart-container">
+                             <canvas id="platformsChart"></canvas>
+                        </div>
+                        <p class="text-center mt-4 font-semibold text-gray-600">Essential AI Platform Categories</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="platforms" class="mb-12">
+                 <h2 class="text-3xl font-bold text-center mb-8">Your AI Leadership Arsenal</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card">
+                        <a href="https://www.salesforce.com/products/einstein/overview/" target="_blank">
+                            <h3 class="font-bold text-xl mb-3 text-sky-800">1. Salesforce Einstein AI</h3>
+                            <p>Paramount for your background. Master the native AI capabilities within the ecosystem you already command.</p>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://gemini.google.com/" target="_blank">
+                            <h3 class="font-bold text-xl mb-3 text-sky-700">2. Generative AI Tools</h3>
+                            <p>Proficiency in ChatGPT, Gemini, and Claude for content, analysis, and communication is non-negotiable for modern leaders.</p>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.gong.io/" target="_blank">
+                            <h3 class="font-bold text-xl mb-3 text-sky-600">3. RevOps Platforms</h3>
+                            <p>Understand AI in Gong, Clari, and Outreach to grasp sales conversation intelligence and forecasting.</p>
+                        </a>
+                    </div>
+                     <div class="card">
+                        <a href="https://www.zendesk.com/service/ai/" target="_blank">
+                            <h3 class="font-bold text-xl mb-3 text-sky-800">4. Customer Service AI</h3>
+                            <p>Familiarize with AI in Zendesk, Intercom, and Drift for ticketing, chatbots, and agent assistance.</p>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://www.tableau.com/products/ai" target="_blank">
+                            <h3 class="font-bold text-xl mb-3 text-sky-700">5. Business Intelligence (BI)</h3>
+                            <p>Leverage AI features within Tableau and Power BI for natural language querying and deeper data insights.</p>
+                        </a>
+                    </div>
+                    <div class="card">
+                        <a href="https://cloud.google.com/vertex-ai" target="_blank">
+                            <h3 class="font-bold text-xl mb-3 text-sky-600">6. Cloud AI Platforms</h3>
+                            <p>Grasp the business purpose of Google Vertex AI, Azure AI, and AWS SageMaker to understand deployment potential.</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const tooltipPlugin = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        function wrapText(text, maxLen = 16) {
+            if (text.length <= maxLen) {
+                return text;
+            }
+            const words = text.split(' ');
+            let currentLine = '';
+            const lines = [];
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLen) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        const colors = {
+            blue800: '#003554',
+            blue700: '#006494',
+            blue600: '#0582CA',
+            blue500: '#00A6FB',
+            gray200: '#E5E7EB',
+        };
+
+        const phase1ChartCtx = document.getElementById('phase1Chart').getContext('2d');
+        new Chart(phase1ChartCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Online Courses', 'YouTube Explainers', 'Webinars & Events'],
+                datasets: [{
+                    label: 'Resource Mix',
+                    data: [50, 35, 15],
+                    backgroundColor: [colors.blue700, colors.blue600, colors.blue500],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    ...tooltipPlugin.plugins
+                },
+                cutout: '60%'
+            }
+        });
+
+        const phase2Labels = [
+            'AI in CRM (Salesforce)', 
+            'Predictive Analytics', 
+            'Conversational AI', 
+            'Process Automation', 
+            'AI for Data Analysis', 
+            'Prompt Engineering'
+        ].map(label => wrapText(label));
+
+        const phase2ChartCtx = document.getElementById('phase2Chart').getContext('2d');
+        new Chart(phase2ChartCtx, {
+            type: 'bar',
+            data: {
+                labels: phase2Labels,
+                datasets: [{
+                    label: 'Focus Area Importance',
+                    data: [95, 85, 75, 80, 90, 88],
+                    backgroundColor: [colors.blue800, colors.blue700, colors.blue600, colors.blue700, colors.blue800, colors.blue600],
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    ...tooltipPlugin.plugins
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                         grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        const platformsChartCtx = document.getElementById('platformsChart').getContext('2d');
+        new Chart(platformsChartCtx, {
+            type: 'radar',
+            data: {
+                labels: [ 'Salesforce AI', ['Generative AI', 'Tools'], 'RevOps AI', ['Customer', 'Service AI'], 'BI with AI', ['Cloud AI', 'Platforms']],
+                datasets: [{
+                    label: 'Priority for Leadership',
+                    data: [10, 9, 8, 7, 7, 6],
+                    backgroundColor: 'rgba(5, 130, 202, 0.2)',
+                    borderColor: colors.blue600,
+                    pointBackgroundColor: colors.blue600,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: colors.blue600,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    ...tooltipPlugin.plugins
+                },
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                         pointLabels: {
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        document.getElementById('explainAiTermBtn').addEventListener('click', async () => {
+            const term = document.getElementById('aiTermInput').value.trim();
+            const outputDiv = document.getElementById('aiExplanationOutput');
+            const loadingDiv = document.getElementById('aiExplanationLoading');
+            outputDiv.innerHTML = '';
+            if (!term) {
+                outputDiv.innerHTML = '<p class="text-red-500">Please enter an AI term.</p>';
+                return;
+            }
+
+            loadingDiv.classList.remove('hidden');
+            outputDiv.classList.add('hidden');
+
+            try {
+                const prompt = `Explain "${term}" in a concise way for a business leader, focusing on its practical application. Keep it under 50 words.`;
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; 
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputDiv.innerHTML = `<p>${text}</p>`;
+                } else {
+                    outputDiv.innerHTML = '<p class="text-red-500">Could not get an explanation. Please try again.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching AI explanation:', error);
+                outputDiv.innerHTML = `<p class="text-red-500">Error: ${error.message}. Please try again.</p>`;
+            } finally {
+                loadingDiv.classList.add('hidden');
+                outputDiv.classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('generateUseCaseBtn').addEventListener('click', async () => {
+            const outputDiv = document.getElementById('useCaseOutput');
+            const loadingDiv = document.getElementById('useCaseLoading');
+            outputDiv.innerHTML = '';
+
+            loadingDiv.classList.remove('hidden');
+            outputDiv.classList.add('hidden');
+
+            try {
+                const prompt = "Generate one unique and practical AI use case for a business leader with experience in Salesforce, RevOps, SalesOps, or Customer Success. The use case should focus on improving operations or customer engagement. Provide only the use case description, no intro or outro. Keep it concise.";
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputDiv.innerHTML = `<p>${text}</p>`;
+                } else {
+                    outputDiv.innerHTML = '<p class="text-red-500">Could not generate a use case. Please try again.</p>';
+                }
+            } catch (error) {
+                console.error('Error generating use case:', error);
+                outputDiv.innerHTML = `<p class="text-red-500">Error: ${error.message}. Please try again.</p>`;
+            } finally {
+                loadingDiv.classList.add('hidden');
+                outputDiv.classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('generateRoleUseCaseBtn').addEventListener('click', async () => {
+            const role = document.getElementById('roleInput').value.trim();
+            const outputDiv = document.getElementById('roleUseCaseOutput');
+            const loadingDiv = document.getElementById('roleUseCaseLoading');
+            outputDiv.innerHTML = '';
+            if (!role) {
+                outputDiv.innerHTML = '<p class="text-red-500">Please enter a role.</p>';
+                return;
+            }
+
+            loadingDiv.classList.remove('hidden');
+            outputDiv.classList.add('hidden');
+
+            try {
+                const prompt = `Generate one unique and practical AI use case for a business leader in the role of "${role}", with experience in Salesforce, RevOps, SalesOps, or Customer Success. The use case should focus on improving operations or customer engagement. Provide only the use case description, no intro or outro. Keep it concise.`;
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputDiv.innerHTML = `<p>${text}</p>`;
+                } else {
+                    outputDiv.innerHTML = '<p class="text-red-500">Could not generate a use case for this role. Please try again.</p>';
+                }
+            } catch (error) {
+                console.error('Error generating role-specific use case:', error);
+                outputDiv.innerHTML = `<p class="text-red-500">Error: ${error.message}. Please try again.</p>`;
+            } finally {
+                loadingDiv.classList.add('hidden');
+                outputDiv.classList.remove('hidden');
+            }
+        });
+
+        let currentQuizData = null; // Store quiz data
+
+        document.getElementById('generateQuizBtn').addEventListener('click', async () => {
+            const questionOutputDiv = document.getElementById('quizQuestionOutput');
+            const questionTextSpan = document.getElementById('quizQuestionText');
+            const optionsDiv = document.getElementById('quizOptions');
+            const feedbackOutputDiv = document.getElementById('quizFeedbackOutput');
+            const loadingDiv = document.getElementById('quizLoading');
+            const submitBtn = document.getElementById('submitQuizBtn');
+
+            questionOutputDiv.classList.add('hidden');
+            feedbackOutputDiv.classList.add('hidden');
+            loadingDiv.classList.remove('hidden');
+            optionsDiv.innerHTML = '';
+            feedbackOutputDiv.innerHTML = '';
+
+            try {
+                const prompt = "Generate a multiple-choice quiz question about a fundamental AI term for a business leader. Provide the term, a question, 3 plausible but distinct answer options (A, B, C), and indicate the correct answer. Also, provide a short explanation for the correct answer. Format the response as a JSON object with keys: `term`, `question`, `options` (an array of strings), `correctAnswer` (the letter A, B, or C), `explanation`). Example: {\"term\": \"Machine Learning\", \"question\": \"What is Machine Learning?\", \"options\": [\"A) Programming computers to learn from data\", \"B) Designing robot hardware\", \"C) Building databases\"], \"correctAnswer\": \"A\", \"explanation\": \"Machine Learning is a subset of AI that enables systems to learn from data without explicit programming.\" }";
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = {
+                    contents: chatHistory,
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "OBJECT",
+                            properties: {
+                                "term": { "type": "STRING" },
+                                "question": { "type": "STRING" },
+                                "options": { "type": "ARRAY", "items": { "type": "STRING" } },
+                                "correctAnswer": { "type": "STRING" },
+                                "explanation": { "type": "STRING" }
+                            }
+                        }
+                    }
+                };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const jsonString = result.candidates[0].content.parts[0].text;
+                    currentQuizData = JSON.parse(jsonString);
+
+                    questionTextSpan.textContent = currentQuizData.question;
+                    currentQuizData.options.forEach((option, index) => {
+                        const optionId = `option${index}`;
+                        optionsDiv.innerHTML += `
+                            <div class="quiz-option">
+                                <input type="radio" id="${optionId}" name="quizOption" value="${option[0]}">
+                                <label for="${optionId}">${option}</label>
+                            </div>
+                        `;
+                    });
+                    document.getElementById('correctAnswer').value = currentQuizData.correctAnswer;
+                    questionOutputDiv.classList.remove('hidden');
+                    submitBtn.classList.remove('hidden');
+                } else {
+                    feedbackOutputDiv.innerHTML = '<p class="text-red-500">Could not generate a quiz question. Please try again.</p>';
+                    feedbackOutputDiv.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Error fetching quiz question:', error);
+                feedbackOutputDiv.innerHTML = `<p class="text-red-500">Error: ${error.message}. Please try again.</p>`;
+                feedbackOutputDiv.classList.remove('hidden');
+            } finally {
+                loadingDiv.classList.add('hidden');
+            }
+        });
+
+        document.getElementById('submitQuizBtn').addEventListener('click', () => {
+            const selectedOption = document.querySelector('input[name="quizOption"]:checked');
+            const feedbackOutputDiv = document.getElementById('quizFeedbackOutput');
+            feedbackOutputDiv.innerHTML = '';
+            feedbackOutputDiv.classList.remove('hidden');
+
+            if (!selectedOption) {
+                feedbackOutputDiv.innerHTML = '<p class="text-red-500">Please select an answer.</p>';
+                return;
+            }
+
+            const userAnswer = selectedOption.value;
+            const correctAnswer = document.getElementById('correctAnswer').value;
+
+            if (userAnswer === correctAnswer) {
+                feedbackOutputDiv.innerHTML = `<p class="font-bold text-green-700">Correct! 🎉</p><p class="mt-2">${currentQuizData.explanation}</p>`;
+            } else {
+                feedbackOutputDiv.innerHTML = `<p class="font-bold text-red-700">Incorrect. The correct answer was ${correctAnswer}.</p><p class="mt-2">${currentQuizData.explanation}</p>`;
+            }
+        });
+    </script>
 </body>
 </html>
