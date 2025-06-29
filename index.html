@@ -33,9 +33,13 @@
             border-radius: 0.75rem;
             padding: 1.5rem;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            /* Removed transition from here - it will be on .card-interactive */
+        }
+        /* New class for interactive cards with hover effect */
+        .card-interactive {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .card:hover {
+        .card-interactive:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
         }
@@ -70,17 +74,22 @@
         .quiz-option label {
             cursor: pointer;
         }
-        .card a {
+        .card-interactive a { /* Target the anchor within the interactive card */
             display: block; /* Make the whole card clickable */
             text-decoration: none; /* Remove underline from links */
             color: inherit; /* Inherit text color from parent */
         }
-        .card a:hover h3 {
+        .card-interactive a:hover h3 {
             color: #006494; /* Darken header on hover for visual feedback */
         }
     </style>
 </head>
 <body class="text-gray-700">
+
+    <!-- Disclaimer at the very top -->
+    <div class="bg-yellow-100 text-yellow-800 p-3 text-center text-sm font-medium rounded-md mx-auto my-4 max-w-4xl border border-yellow-200">
+        This infographic is for demonstration purposes only and the content or implied associations are not indicative of any actual affiliation with the mentioned companies or platforms.
+    </div>
 
     <div class="container mx-auto p-4 md:p-8">
 
@@ -92,6 +101,7 @@
         <section id="journey" class="mb-16">
             <h2 class="text-3xl font-bold text-center mb-8">The 3-Phase Journey</h2>
             <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center text-center">
+                <!-- These cards are informational, so they don't get the 'card-interactive' class -->
                 <div class="card p-4">
                     <h3 class="font-bold text-xl mb-1">Phase 1</h3>
                     <p class="font-semibold text-lg text-sky-600">Fundamentals</p>
@@ -137,8 +147,9 @@
                     </div>
                 </div>
             </section>
-
+            
             <section id="ai-interactive-tools">
+                <!-- AI interactive tools are within a single card block, no individual card-interactive class needed for the outer container -->
                 <div class="card grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                         <h3 class="font-bold text-xl mb-4 text-sky-800">✨ AI Concept Explainer</h3>
@@ -203,7 +214,7 @@
                     </div>
                 </div>
             </section>
-
+            
             <section id="phase3">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <div class="order-2 md:order-1">
@@ -212,13 +223,14 @@
                         <div class="card">
                             <h3 class="font-bold text-xl mb-4">The Application Cycle</h3>
                              <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-2">
-                                <div class="text-center"><div class="font-bold p-3 bg-sky-100 rounded-full w-24 h-24 flex items-center justify-center">Identify Pain Point</div></div>
+                                <!-- Updated classes for circular divs to improve responsiveness and prevent overflow -->
+                                <div class="text-center"><div class="font-bold text-xs sm:text-sm p-2 w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center bg-sky-100 rounded-full">Identify Pain Point</div></div>
                                 <div class="phase-arrow text-2xl">&darr;</div>
-                                <div class="text-center"><div class="font-bold p-3 bg-sky-200 rounded-full w-24 h-24 flex items-center justify-center">Research Solutions</div></div>
+                                <div class="text-center"><div class="font-bold text-xs sm:text-sm p-2 w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center bg-sky-200 rounded-full">Research Solutions</div></div>
                                  <div class="phase-arrow text-2xl">&darr;</div>
-                                <div class="text-center"><div class="font-bold p-3 bg-sky-300 rounded-full w-24 h-24 flex items-center justify-center">Experiment w/ Tools</div></div>
+                                <div class="text-center"><div class="font-bold text-xs sm:text-sm p-2 w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center bg-sky-300 rounded-full">Experiment w/ Tools</div></div>
                                  <div class="phase-arrow text-2xl">&darr;</div>
-                                <div class="text-center"><div class="font-bold p-3 bg-sky-400 rounded-full w-24 h-24 flex items-center justify-center text-white">Refine & Scale</div></div>
+                                <div class="text-center"><div class="font-bold text-xs sm:text-sm p-2 w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center text-white bg-sky-400 rounded-full">Refine & Scale</div></div>
                             </div>
                         </div>
                     </div>
@@ -230,41 +242,42 @@
                     </div>
                 </div>
             </section>
-
+            
             <section id="platforms" class="mb-12">
                  <h2 class="text-3xl font-bold text-center mb-8">Your AI Leadership Arsenal</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="card">
+                    <!-- These cards ARE interactive, so they get the 'card-interactive' class -->
+                    <div class="card card-interactive">
                         <a href="https://www.salesforce.com/products/einstein/overview/" target="_blank">
                             <h3 class="font-bold text-xl mb-3 text-sky-800">1. Salesforce Einstein AI</h3>
                             <p>Paramount for your background. Master the native AI capabilities within the ecosystem you already command.</p>
                         </a>
                     </div>
-                    <div class="card">
+                    <div class="card card-interactive">
                         <a href="https://gemini.google.com/" target="_blank">
                             <h3 class="font-bold text-xl mb-3 text-sky-700">2. Generative AI Tools</h3>
                             <p>Proficiency in ChatGPT, Gemini, and Claude for content, analysis, and communication is non-negotiable for modern leaders.</p>
                         </a>
                     </div>
-                    <div class="card">
+                    <div class="card card-interactive">
                         <a href="https://www.gong.io/" target="_blank">
                             <h3 class="font-bold text-xl mb-3 text-sky-600">3. RevOps Platforms</h3>
                             <p>Understand AI in Gong, Clari, and Outreach to grasp sales conversation intelligence and forecasting.</p>
                         </a>
                     </div>
-                     <div class="card">
+                     <div class="card card-interactive">
                         <a href="https://www.zendesk.com/service/ai/" target="_blank">
                             <h3 class="font-bold text-xl mb-3 text-sky-800">4. Customer Service AI</h3>
                             <p>Familiarize with AI in Zendesk, Intercom, and Drift for ticketing, chatbots, and agent assistance.</p>
                         </a>
                     </div>
-                    <div class="card">
+                    <div class="card card-interactive">
                         <a href="https://www.tableau.com/products/ai" target="_blank">
                             <h3 class="font-bold text-xl mb-3 text-sky-700">5. Business Intelligence (BI)</h3>
                             <p>Leverage AI features within Tableau and Power BI for natural language querying and deeper data insights.</p>
-                        </a>
+                            </a>
                     </div>
-                    <div class="card">
+                    <div class="card card-interactive">
                         <a href="https://cloud.google.com/vertex-ai" target="_blank">
                             <h3 class="font-bold text-xl mb-3 text-sky-600">6. Cloud AI Platforms</h3>
                             <p>Grasp the business purpose of Google Vertex AI, Azure AI, and AWS SageMaker to understand deployment potential.</p>
@@ -276,6 +289,80 @@
     </div>
 
     <script>
+        // IMPORTANT: If you are hosting this on GitHub Pages (or any static site outside Google Canvas),
+        // you MUST replace `""` below with your actual Google Gemini API Key.
+        // You can get one from Google AI Studio: https://makersuite.google.com/app/apikey
+        const GOOGLE_API_KEY = "AIzaSyDKrvtuX3f4f_8EfklCK9RrdHqBB4VaKx0"; // <-- REPLACE THIS WITH YOUR API KEY IF HOSTING LIVE
+
+        // Utility function to make API calls
+        async function callGeminiAPI(prompt, isJson = false, apiModel = 'gemini-2.0-flash') {
+            const outputDiv = document.getElementById('aiExplanationOutput'); // Using explanation output for generic errors
+            const loadingDiv = document.getElementById('aiExplanationLoading'); // Using explanation loading for generic loading
+            
+            // Show loading, hide output
+            loadingDiv.classList.remove('hidden');
+            outputDiv.classList.add('hidden'); // Temporarily hide output
+
+            try {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+                const requestBody = { contents: chatHistory };
+                if (isJson) {
+                    requestBody.generationConfig = {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "OBJECT",
+                            properties: {
+                                "term": { "type": "STRING" },
+                                "question": { "type": "STRING" },
+                                "options": { "type": "ARRAY", "items": { "type": "STRING" } },
+                                "correctAnswer": { "type": "STRING" },
+                                "explanation": { "type": "STRING" }
+                            }
+                        }
+                    };
+                }
+
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${apiModel}:generateContent?key=${GOOGLE_API_KEY}`;
+                
+                // Add a check for missing API Key before making the fetch call
+                if (!GOOGLE_API_KEY && GOOGLE_API_KEY !== "") { // Check if key is truly empty or null/undefined
+                    throw new Error("API Key is missing. Please set GOOGLE_API_KEY in the script.");
+                }
+
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`API error: ${response.status} ${response.statusText} - ${errorData.error ? errorData.error.message : 'Unknown error'}`);
+                }
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    return isJson ? JSON.parse(result.candidates[0].content.parts[0].text) : result.candidates[0].content.parts[0].text;
+                } else {
+                    throw new Error("No content received from API.");
+                }
+            } catch (error) {
+                console.error('Gemini API call failed:', error);
+                // Display error message in the relevant output area
+                outputDiv.innerHTML = `<p class="text-red-500">Error: ${error.message}. Please try again or check your API key.</p>`;
+                outputDiv.classList.remove('hidden'); // Show error output
+                return null; // Indicate failure
+            } finally {
+                loadingDiv.classList.add('hidden');
+            }
+        }
+
+
         const tooltipPlugin = {
             plugins: {
                 tooltip: {
@@ -440,214 +527,97 @@
             }
         });
 
+        // AI Concept Explainer
         document.getElementById('explainAiTermBtn').addEventListener('click', async () => {
             const term = document.getElementById('aiTermInput').value.trim();
             const outputDiv = document.getElementById('aiExplanationOutput');
-            const loadingDiv = document.getElementById('aiExplanationLoading');
             outputDiv.innerHTML = '';
             if (!term) {
                 outputDiv.innerHTML = '<p class="text-red-500">Please enter an AI term.</p>';
                 return;
             }
 
-            loadingDiv.classList.remove('hidden');
-            outputDiv.classList.add('hidden');
-
-            try {
-                const prompt = `Explain "${term}" in a concise way for a business leader, focusing on its practical application. Keep it under 50 words.`;
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                const payload = { contents: chatHistory };
-                const apiKey = ""; 
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    outputDiv.innerHTML = `<p>${text}</p>`;
-                } else {
-                    outputDiv.innerHTML = '<p class="text-red-500">Could not get an explanation. Please try again.</p>';
-                }
-            } catch (error) {
-                console.error('Error fetching AI explanation:', error);
-                outputDiv.innerHTML = `<p class="text-red-500">Error: ${error.message}. Please try again.</p>`;
-            } finally {
-                loadingDiv.classList.add('hidden');
+            const prompt = `Explain "${term}" in a concise way for a business leader, focusing on its practical application. Keep it under 50 words.`;
+            const textResult = await callGeminiAPI(prompt);
+            if (textResult) {
+                outputDiv.innerHTML = `<p>${textResult}</p>`;
                 outputDiv.classList.remove('hidden');
             }
         });
 
+        // General AI Use Case Idea Generator
         document.getElementById('generateUseCaseBtn').addEventListener('click', async () => {
             const outputDiv = document.getElementById('useCaseOutput');
-            const loadingDiv = document.getElementById('useCaseLoading');
             outputDiv.innerHTML = '';
 
-            loadingDiv.classList.remove('hidden');
-            outputDiv.classList.add('hidden');
-
-            try {
-                const prompt = "Generate one unique and practical AI use case for a business leader with experience in Salesforce, RevOps, SalesOps, or Customer Success. The use case should focus on improving operations or customer engagement. Provide only the use case description, no intro or outro. Keep it concise.";
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                const payload = { contents: chatHistory };
-                const apiKey = "";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    outputDiv.innerHTML = `<p>${text}</p>`;
-                } else {
-                    outputDiv.innerHTML = '<p class="text-red-500">Could not generate a use case. Please try again.</p>';
-                }
-            } catch (error) {
-                console.error('Error generating use case:', error);
-                outputDiv.innerHTML = `<p class="text-red-500">Error: ${error.message}. Please try again.</p>`;
-            } finally {
-                loadingDiv.classList.add('hidden');
+            const prompt = "Generate one unique and practical AI use case for a business leader with experience in Salesforce, RevOps, SalesOps, or Customer Success. The use case should focus on improving operations or customer engagement. Provide only the use case description, no intro or outro. Keep it concise.";
+            const textResult = await callGeminiAPI(prompt);
+            if (textResult) {
+                outputDiv.innerHTML = `<p>${textResult}</p>`;
                 outputDiv.classList.remove('hidden');
             }
         });
 
+        // Role-Specific AI Use Case Generator
         document.getElementById('generateRoleUseCaseBtn').addEventListener('click', async () => {
             const role = document.getElementById('roleInput').value.trim();
             const outputDiv = document.getElementById('roleUseCaseOutput');
-            const loadingDiv = document.getElementById('roleUseCaseLoading');
             outputDiv.innerHTML = '';
             if (!role) {
                 outputDiv.innerHTML = '<p class="text-red-500">Please enter a role.</p>';
                 return;
             }
 
-            loadingDiv.classList.remove('hidden');
-            outputDiv.classList.add('hidden');
-
-            try {
-                const prompt = `Generate one unique and practical AI use case for a business leader in the role of "${role}", with experience in Salesforce, RevOps, SalesOps, or Customer Success. The use case should focus on improving operations or customer engagement. Provide only the use case description, no intro or outro. Keep it concise.`;
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                const payload = { contents: chatHistory };
-                const apiKey = "";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    outputDiv.innerHTML = `<p>${text}</p>`;
-                } else {
-                    outputDiv.innerHTML = '<p class="text-red-500">Could not generate a use case for this role. Please try again.</p>';
-                }
-            } catch (error) {
-                console.error('Error generating role-specific use case:', error);
-                outputDiv.innerHTML = `<p class="text-red-500">Error: ${error.message}. Please try again.</p>`;
-            } finally {
-                loadingDiv.classList.add('hidden');
+            const prompt = `Generate one unique and practical AI use case for a business leader in the role of "${role}", with experience in Salesforce, RevOps, SalesOps, or Customer Success. The use case should focus on improving operations or customer engagement. Provide only the use case description, no intro or outro. Keep it concise.`;
+            const textResult = await callGeminiAPI(prompt);
+            if (textResult) {
+                outputDiv.innerHTML = `<p>${textResult}</p>`;
                 outputDiv.classList.remove('hidden');
             }
         });
 
         let currentQuizData = null; // Store quiz data
 
+        // Quick AI Terminology Quiz
         document.getElementById('generateQuizBtn').addEventListener('click', async () => {
             const questionOutputDiv = document.getElementById('quizQuestionOutput');
             const questionTextSpan = document.getElementById('quizQuestionText');
             const optionsDiv = document.getElementById('quizOptions');
             const feedbackOutputDiv = document.getElementById('quizFeedbackOutput');
-            const loadingDiv = document.getElementById('quizLoading');
             const submitBtn = document.getElementById('submitQuizBtn');
 
             questionOutputDiv.classList.add('hidden');
             feedbackOutputDiv.classList.add('hidden');
-            loadingDiv.classList.remove('hidden');
-            optionsDiv.innerHTML = '';
-            feedbackOutputDiv.innerHTML = '';
+            optionsDiv.innerHTML = ''; // Clear previous options
+            feedbackOutputDiv.innerHTML = ''; // Clear previous feedback
 
-            try {
-                const prompt = "Generate a multiple-choice quiz question about a fundamental AI term for a business leader. Provide the term, a question, 3 plausible but distinct answer options (A, B, C), and indicate the correct answer. Also, provide a short explanation for the correct answer. Format the response as a JSON object with keys: `term`, `question`, `options` (an array of strings), `correctAnswer` (the letter A, B, or C), `explanation`). Example: {\"term\": \"Machine Learning\", \"question\": \"What is Machine Learning?\", \"options\": [\"A) Programming computers to learn from data\", \"B) Designing robot hardware\", \"C) Building databases\"], \"correctAnswer\": \"A\", \"explanation\": \"Machine Learning is a subset of AI that enables systems to learn from data without explicit programming.\" }";
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                const payload = {
-                    contents: chatHistory,
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                        responseSchema: {
-                            type: "OBJECT",
-                            properties: {
-                                "term": { "type": "STRING" },
-                                "question": { "type": "STRING" },
-                                "options": { "type": "ARRAY", "items": { "type": "STRING" } },
-                                "correctAnswer": { "type": "STRING" },
-                                "explanation": { "type": "STRING" }
-                            }
-                        }
-                    }
-                };
-                const apiKey = "";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+            const prompt = "Generate a multiple-choice quiz question about a fundamental AI term for a business leader. Provide the term, a question, 3 plausible but distinct answer options (A, B, C), and indicate the correct answer. Also, provide a short explanation for the correct answer. Format the response as a JSON object with keys: `term`, `question`, `options` (an array of strings), `correctAnswer` (the letter A, B, or C), `explanation`. Example: {\"term\": \"Machine Learning\", \"question\": \"What is Machine Learning?\", \"options\": [\"A) Programming computers to learn from data\", \"B) Designing robot hardware\", \"C) Building databases\"], \"correctAnswer\": \"A\", \"explanation\": \"Machine Learning is a subset of AI that enables systems to learn from data without explicit programming.\" }";
+            
+            const quizResult = await callGeminiAPI(prompt, true); // Expecting JSON response
+            
+            if (quizResult) {
+                currentQuizData = quizResult;
+                questionTextSpan.textContent = currentQuizData.question;
+                currentQuizData.options.forEach((option, index) => {
+                    const optionId = `option${index}`;
+                    optionsDiv.innerHTML += `
+                        <div class="quiz-option">
+                            <input type="radio" id="${optionId}" name="quizOption" value="${option[0]}">
+                            <label for="${optionId}">${option}</label>
+                        </div>
+                    `;
                 });
-
-                const result = await response.json();
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const jsonString = result.candidates[0].content.parts[0].text;
-                    currentQuizData = JSON.parse(jsonString);
-
-                    questionTextSpan.textContent = currentQuizData.question;
-                    currentQuizData.options.forEach((option, index) => {
-                        const optionId = `option${index}`;
-                        optionsDiv.innerHTML += `
-                            <div class="quiz-option">
-                                <input type="radio" id="${optionId}" name="quizOption" value="${option[0]}">
-                                <label for="${optionId}">${option}</label>
-                            </div>
-                        `;
-                    });
-                    document.getElementById('correctAnswer').value = currentQuizData.correctAnswer;
-                    questionOutputDiv.classList.remove('hidden');
-                    submitBtn.classList.remove('hidden');
-                } else {
-                    feedbackOutputDiv.innerHTML = '<p class="text-red-500">Could not generate a quiz question. Please try again.</p>';
-                    feedbackOutputDiv.classList.remove('hidden');
-                }
-            } catch (error) {
-                console.error('Error fetching quiz question:', error);
-                feedbackOutputDiv.innerHTML = `<p class="text-red-500">Error: ${error.message}. Please try again.</p>`;
-                feedbackOutputDiv.classList.remove('hidden');
-            } finally {
-                loadingDiv.classList.add('hidden');
+                document.getElementById('correctAnswer').value = currentQuizData.correctAnswer;
+                questionOutputDiv.classList.remove('hidden');
+                submitBtn.classList.remove('hidden');
+            } else {
+                // Error message already handled by callGeminiAPI, just ensure quiz section stays hidden
+                questionOutputDiv.classList.add('hidden');
+                submitBtn.classList.add('hidden');
             }
         });
 
+        // Quiz Submission Handler
         document.getElementById('submitQuizBtn').addEventListener('click', () => {
             const selectedOption = document.querySelector('input[name="quizOption"]:checked');
             const feedbackOutputDiv = document.getElementById('quizFeedbackOutput');
