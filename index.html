@@ -296,18 +296,34 @@
 
         // Utility function to make API calls
         async function callGeminiAPI(prompt, isJson = false, apiModel = 'gemini-2.0-flash') {
-            const outputDiv = document.getElementById('aiExplanationOutput'); // Using explanation output for generic errors
-            const loadingDiv = document.getElementById('aiExplanationLoading'); // Using explanation loading for generic loading
-            
-            // Show loading, hide output
-            loadingDiv.classList.remove('hidden');
-            outputDiv.classList.add('hidden'); // Temporarily hide output
+            const loadingDiv = document.getElementById('aiExplanationLoading'); // This is the general loading indicator
+            const aiToolsCard = document.querySelector('#ai-interactive-tools .card'); // Get the card containing AI tools
+            let targetOutputDiv = null; // Will point to the specific output div for the current operation
+
+            // Determine which output div to use for messages
+            if (prompt.includes("Explain")) {
+                targetOutputDiv = document.getElementById('aiExplanationOutput');
+            } else if (prompt.includes("Generate one unique and practical AI use case")) {
+                 if (prompt.includes("in the role of")) {
+                    targetOutputDiv = document.getElementById('roleUseCaseOutput');
+                } else {
+                    targetOutputDiv = document.getElementById('useCaseOutput');
+                }
+            } else if (prompt.includes("Generate a multiple-choice quiz question")) {
+                targetOutputDiv = document.getElementById('quizFeedbackOutput'); // Quiz feedback for errors
+            }
+
+            // Clear previous output and show loading
+            if (targetOutputDiv) targetOutputDiv.innerHTML = '';
+            if (targetOutputDiv) targetOutputDiv.classList.add('hidden'); // Hide specific output div initially
+            loadingDiv.classList.remove('hidden'); // Show general loading
 
             try {
                 let chatHistory = [];
                 chatHistory.push({ role: "user", parts: [{ text: prompt }] });
 
                 const requestBody = { contents: chatHistory };
+                // Only include responseSchema for JSON requests (like the quiz)
                 if (isJson) {
                     requestBody.generationConfig = {
                         responseMimeType: "application/json",
@@ -327,10 +343,9 @@
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${apiModel}:generateContent?key=${GOOGLE_API_KEY}`;
                 
                 // Add a check for missing API Key before making the fetch call
-                if (!GOOGLE_API_KEY && GOOGLE_API_KEY !== "") { // Check if key is truly empty or null/undefined
-                    throw new Error("API Key is missing. Please set GOOGLE_API_KEY in the script.");
+                if (!GOOGLE_API_KEY || GOOGLE_API_KEY === "") { // Check if key is truly empty
+                    throw new Error("API Key is missing. Please set GOOGLE_API_KEY in the script for AI features to work.");
                 }
-
 
                 const response = await fetch(apiUrl, {
                     method: 'POST',
@@ -340,25 +355,34 @@
 
                 if (!response.ok) {
                     const errorData = await response.json();
-                    throw new Error(`API error: ${response.status} ${response.statusText} - ${errorData.error ? errorData.error.message : 'Unknown error'}`);
+                    const errorMessage = errorData.error ? errorData.error.message : 'Unknown error';
+                    throw new Error(`API response error: ${response.status} ${response.statusText} - ${errorMessage}`);
                 }
 
                 const result = await response.json();
                 if (result.candidates && result.candidates.length > 0 &&
                     result.candidates[0].content && result.candidates[0].content.parts &&
                     result.candidates[0].content.parts.length > 0) {
-                    return isJson ? JSON.parse(result.candidates[0].content.parts[0].text) : result.candidates[0].content.parts[0].text;
+                    // Always return the raw text content from the API.
+                    // Callers will handle JSON parsing if needed.
+                    return result.candidates[0].content.parts[0].text;
                 } else {
                     throw new Error("No content received from API.");
                 }
             } catch (error) {
-                console.error('Gemini API call failed:', error);
-                // Display error message in the relevant output area
-                outputDiv.innerHTML = `<p class="text-red-500">Error: ${error.message}. Please try again or check your API key.</p>`;
-                outputDiv.classList.remove('hidden'); // Show error output
+                console.error(`Gemini API call failed for prompt "${prompt.substring(0, 50)}...":`, error);
+                const displayMessage = `<p class="text-red-500">Error: ${error.message}. Please try again.</p>`;
+                if (targetOutputDiv) {
+                    targetOutputDiv.innerHTML = displayMessage;
+                    targetOutputDiv.classList.remove('hidden');
+                } else {
+                    // Fallback if targetOutputDiv couldn't be determined (shouldn't happen with current logic)
+                    document.getElementById('aiExplanationOutput').innerHTML = displayMessage;
+                    document.getElementById('aiExplanationOutput').classList.remove('hidden');
+                }
                 return null; // Indicate failure
             } finally {
-                loadingDiv.classList.add('hidden');
+                loadingDiv.classList.add('hidden'); // Hide general loading
             }
         }
 
@@ -531,9 +555,10 @@
         document.getElementById('explainAiTermBtn').addEventListener('click', async () => {
             const term = document.getElementById('aiTermInput').value.trim();
             const outputDiv = document.getElementById('aiExplanationOutput');
-            outputDiv.innerHTML = '';
+            
             if (!term) {
                 outputDiv.innerHTML = '<p class="text-red-500">Please enter an AI term.</p>';
+                outputDiv.classList.remove('hidden');
                 return;
             }
 
@@ -548,8 +573,6 @@
         // General AI Use Case Idea Generator
         document.getElementById('generateUseCaseBtn').addEventListener('click', async () => {
             const outputDiv = document.getElementById('useCaseOutput');
-            outputDiv.innerHTML = '';
-
             const prompt = "Generate one unique and practical AI use case for a business leader with experience in Salesforce, RevOps, SalesOps, or Customer Success. The use case should focus on improving operations or customer engagement. Provide only the use case description, no intro or outro. Keep it concise.";
             const textResult = await callGeminiAPI(prompt);
             if (textResult) {
@@ -562,9 +585,9 @@
         document.getElementById('generateRoleUseCaseBtn').addEventListener('click', async () => {
             const role = document.getElementById('roleInput').value.trim();
             const outputDiv = document.getElementById('roleUseCaseOutput');
-            outputDiv.innerHTML = '';
             if (!role) {
                 outputDiv.innerHTML = '<p class="text-red-500">Please enter a role.</p>';
+                outputDiv.classList.remove('hidden');
                 return;
             }
 
@@ -590,28 +613,42 @@
             feedbackOutputDiv.classList.add('hidden');
             optionsDiv.innerHTML = ''; // Clear previous options
             feedbackOutputDiv.innerHTML = ''; // Clear previous feedback
+            submitBtn.classList.add('hidden'); // Hide submit button until question is loaded
 
             const prompt = "Generate a multiple-choice quiz question about a fundamental AI term for a business leader. Provide the term, a question, 3 plausible but distinct answer options (A, B, C), and indicate the correct answer. Also, provide a short explanation for the correct answer. Format the response as a JSON object with keys: `term`, `question`, `options` (an array of strings), `correctAnswer` (the letter A, B, or C), `explanation`. Example: {\"term\": \"Machine Learning\", \"question\": \"What is Machine Learning?\", \"options\": [\"A) Programming computers to learn from data\", \"B) Designing robot hardware\", \"C) Building databases\"], \"correctAnswer\": \"A\", \"explanation\": \"Machine Learning is a subset of AI that enables systems to learn from data without explicit programming.\" }";
             
-            const quizResult = await callGeminiAPI(prompt, true); // Expecting JSON response
+            const rawQuizResult = await callGeminiAPI(prompt, true); // `true` for `isJson` means we pass the schema
             
-            if (quizResult) {
-                currentQuizData = quizResult;
-                questionTextSpan.textContent = currentQuizData.question;
-                currentQuizData.options.forEach((option, index) => {
-                    const optionId = `option${index}`;
-                    optionsDiv.innerHTML += `
-                        <div class="quiz-option">
-                            <input type="radio" id="${optionId}" name="quizOption" value="${option[0]}">
-                            <label for="${optionId}">${option}</label>
-                        </div>
-                    `;
-                });
-                document.getElementById('correctAnswer').value = currentQuizData.correctAnswer;
-                questionOutputDiv.classList.remove('hidden');
-                submitBtn.classList.remove('hidden');
+            if (rawQuizResult) {
+                try {
+                    currentQuizData = JSON.parse(rawQuizResult);
+                    // Validate essential fields
+                    if (!currentQuizData.question || !Array.isArray(currentQuizData.options) || currentQuizData.options.length < 3 || !currentQuizData.correctAnswer || !currentQuizData.explanation) {
+                        throw new Error("Incomplete or malformed quiz data received from API.");
+                    }
+
+                    questionTextSpan.textContent = currentQuizData.question;
+                    currentQuizData.options.forEach((option, index) => {
+                        const optionId = `option${index}`;
+                        optionsDiv.innerHTML += `
+                            <div class="quiz-option">
+                                <input type="radio" id="${optionId}" name="quizOption" value="${option[0]}">
+                                <label for="${optionId}">${option}</label>
+                            </div>
+                        `;
+                    });
+                    document.getElementById('correctAnswer').value = currentQuizData.correctAnswer;
+                    questionOutputDiv.classList.remove('hidden');
+                    submitBtn.classList.remove('hidden');
+                } catch (jsonError) {
+                    console.error('Error parsing quiz JSON:', jsonError);
+                    feedbackOutputDiv.innerHTML = `<p class="text-red-500">Error parsing quiz data: ${jsonError.message}. Please try again.</p>`;
+                    feedbackOutputDiv.classList.remove('hidden');
+                    questionOutputDiv.classList.add('hidden'); // Hide quiz elements on parsing error
+                    submitBtn.classList.add('hidden');
+                }
             } else {
-                // Error message already handled by callGeminiAPI, just ensure quiz section stays hidden
+                // Error message already handled by callGeminiAPI if rawQuizResult is null
                 questionOutputDiv.classList.add('hidden');
                 submitBtn.classList.add('hidden');
             }
