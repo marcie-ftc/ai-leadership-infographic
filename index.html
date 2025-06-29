@@ -88,7 +88,7 @@
 
     <!-- Disclaimer at the very top -->
     <div class="bg-yellow-100 text-yellow-800 p-3 text-center text-sm font-medium rounded-md mx-auto my-4 max-w-4xl border border-yellow-200">
-        This infographic is for demonstration purposes only and its interactive features may not be fully functional. The content or implied associations are not indicative of any actual affiliation with the mentioned companies or platforms.
+        This infographic is for demonstration purposes only. Interactive AI features are disabled in this public client-side demo due to API key security best practices. For a functional version, API keys would be securely managed on a backend server. The content or implied associations are not indicative of any actual affiliation with the mentioned companies or platforms.
     </div>
 
     <div class="container mx-auto p-4 md:p-8">
@@ -152,27 +152,30 @@
                 <!-- AI interactive tools are within a single card block, no individual card-interactive class needed for the outer container -->
                 <div class="card grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ AI Concept Explainer</h3>
-                        <p class="mb-4">Enter an AI term and get a concise, business-focused explanation directly from an AI expert.</p>
+                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ AI Concept Explainer (Demo Only)</h3>
+                        <p class="mb-4">Enter an AI term and click "Explain Term" to see how an AI-powered explainer *would* work in a live environment.</p>
                         <input type="text" id="aiTermInput" placeholder="e.g., Machine Learning" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-sky-500">
                         <button id="explainAiTermBtn" class="ai-button w-full">Explain Term</button>
-                        <div id="aiExplanationLoading" class="hidden text-center mt-4 text-gray-500">Loading...</div>
-                        <div id="aiExplanationOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"></div>
+                        <div id="aiExplanationOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200">
+                            <p class="text-gray-600">AI functionality is disabled in this public demo for security reasons (API key visibility). In a fully functional application, this would provide a concise AI-generated explanation.</p>
+                        </div>
                     </div>
                      <div>
-                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ General AI Use Case Idea Generator</h3>
-                        <p class="mb-4">Click below to brainstorm a new, practical AI use case for business operations.</p>
+                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ General AI Use Case Idea Generator (Demo Only)</h3>
+                        <p class="mb-4">Click below to see how a general AI use case idea *would* be generated for business operations.</p>
                         <button id="generateUseCaseBtn" class="ai-button w-full">Generate Use Case Idea</button>
-                        <div id="useCaseLoading" class="hidden text-center mt-4 text-gray-500">Loading...</div>
-                        <div id="useCaseOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"></div>
+                        <div id="useCaseOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200">
+                            <p class="text-gray-600">AI functionality is disabled in this public demo for security reasons (API key visibility). In a fully functional application, this would brainstorm a new, practical AI use case.</p>
+                        </div>
                     </div>
                     <div class="md:col-span-2">
-                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ Role-Specific AI Use Case Generator</h3>
-                        <p class="mb-4">Enter a specific role (e.g., "Customer Success Manager") to get a tailored AI use case idea.</p>
+                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ Role-Specific AI Use Case Generator (Demo Only)</h3>
+                        <p class="mb-4">Enter a specific role (e.g., "Customer Success Manager") to see how a tailored AI use case idea *would* be generated.</p>
                         <input type="text" id="roleInput" placeholder="e.g., Sales Operations Lead" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-sky-500">
                         <button id="generateRoleUseCaseBtn" class="ai-button w-full">Generate Role-Specific Idea</button>
-                        <div id="roleUseCaseLoading" class="hidden text-center mt-4 text-gray-500">Loading...</div>
-                        <div id="roleUseCaseOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"></div>
+                        <div id="roleUseCaseOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200">
+                            <p class="text-gray-600">AI functionality is disabled in this public demo for security reasons (API key visibility). In a fully functional application, this would provide a tailored AI use case idea.</p>
+                        </div>
                     </div>
                     <!-- Quiz functionality removed as requested -->
                 </div>
@@ -292,86 +295,30 @@
     <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
 
     <script>
-        // IMPORTANT: If you are hosting this on GitHub Pages (or any static site outside Google Canvas),
-        // you MUST replace `""` below with your actual Google Gemini API Key.
-        // You can get one from Google AI Studio: https://makersuite.google.com/app/apikey
-        const GOOGLE_API_KEY = "AIzaSyDKrvtuX3f4f_8EfklCK9RrdHqBB4VaKx0"; // <-- REPLACE THIS WITH YOUR API KEY IF HOSTING LIVE
+        // Placeholder for API Key (no longer used for direct calls)
+        const GOOGLE_API_KEY = ""; 
 
-        // Utility function to make API calls
-        async function callGeminiAPI(prompt, isJson = false, apiModel = 'gemini-2.0-flash') {
-            const loadingDiv = document.getElementById('aiExplanationLoading'); // This is the general loading indicator
-            let targetOutputDiv = null; // Will point to the specific output div for the current operation
-
-            // Determine which output div to use for messages
-            if (prompt.includes("Explain")) {
-                targetOutputDiv = document.getElementById('aiExplanationOutput');
-            } else if (prompt.includes("Generate one unique and practical AI use case")) {
-                 if (prompt.includes("in the role of")) {
-                    targetOutputDiv = document.getElementById('roleUseCaseOutput');
-                } else {
-                    targetOutputDiv = document.getElementById('useCaseOutput');
-                }
-            }
-            // Removed quiz specific targetOutputDiv assignment here
-
-            // Clear previous output and show loading
-            if (targetOutputDiv) targetOutputDiv.innerHTML = '';
-            if (targetOutputDiv) targetOutputDiv.classList.add('hidden'); // Hide specific output div initially
-            loadingDiv.classList.remove('hidden'); // Show general loading
-
-            try {
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-
-                const requestBody = { contents: chatHistory };
-                // Removed responseSchema for JSON requests as quiz is removed
-
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${apiModel}:generateContent?key=${GOOGLE_API_KEY}`;
-                
-                // Add a check for missing API Key before making the fetch call
-                if (!GOOGLE_API_KEY || GOOGLE_API_KEY === "") { // Check if key is truly empty
-                    throw new Error("API Key is missing. Please set GOOGLE_API_KEY in the script for AI features to work.");
-                }
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(requestBody)
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    const errorMessage = errorData.error ? errorData.error.message : 'Unknown error';
-                    throw new Error(`API response error: ${response.status} ${response.statusText} - ${errorMessage}`);
-                }
-
-                const result = await response.json();
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    
-                    const rawText = result.candidates[0].content.parts[0].text;
-                    // Removed JSON parsing logic here as it's no longer needed for quiz
-                    return rawText; // Return raw text for non-JSON requests
-                } else {
-                    throw new Error("No content received from API.");
-                }
-            } catch (error) {
-                console.error(`Gemini API call failed for prompt "${prompt.substring(0, 50)}...":`, error);
-                const displayMessage = `<p class="text-red-500">Error: ${error.message}. Please try again.</p>`;
-                if (targetOutputDiv) {
-                    targetOutputDiv.innerHTML = displayMessage;
-                    targetOutputDiv.classList.remove('hidden');
-                } else {
-                    // Fallback if targetOutputDiv couldn't be determined (shouldn't happen with current logic)
-                    document.getElementById('aiExplanationOutput').innerHTML = displayMessage;
-                    document.getElementById('aiExplanationOutput').classList.remove('hidden');
-                }
-                return null; // Indicate failure
-            } finally {
-                loadingDiv.classList.add('hidden'); // Hide general loading
-            }
+        // Function to display demo message for AI features
+        function displayDemoMessage(outputDivId) {
+            const outputDiv = document.getElementById(outputDivId);
+            outputDiv.innerHTML = `<p class="text-gray-600">AI functionality is disabled in this public demo for security reasons (API key visibility). In a fully functional application, this would provide an AI-generated response.</p>`;
+            outputDiv.classList.remove('hidden');
         }
+
+        // Overriding AI Concept Explainer functionality for demo
+        document.getElementById('explainAiTermBtn').addEventListener('click', () => {
+            displayDemoMessage('aiExplanationOutput');
+        });
+
+        // Overriding General AI Use Case Idea Generator functionality for demo
+        document.getElementById('generateUseCaseBtn').addEventListener('click', () => {
+            displayDemoMessage('useCaseOutput');
+        });
+
+        // Overriding Role-Specific AI Use Case Generator functionality for demo
+        document.getElementById('generateRoleUseCaseBtn').addEventListener('click', () => {
+            displayDemoMessage('roleUseCaseOutput');
+        });
 
 
         const tooltipPlugin = {
@@ -538,55 +485,31 @@
             }
         });
 
-        // AI Concept Explainer
-        document.getElementById('explainAiTermBtn').addEventListener('click', async () => {
+        // The following functions are now just for demonstration message display
+        // AI Concept Explainer - Button click now triggers demo message
+        document.getElementById('explainAiTermBtn').addEventListener('click', () => {
             const term = document.getElementById('aiTermInput').value.trim();
             const outputDiv = document.getElementById('aiExplanationOutput');
-            
-            if (!term) {
-                outputDiv.innerHTML = '<p class="text-red-500">Please enter an AI term.</p>';
-                outputDiv.classList.remove('hidden');
-                return;
-            }
-
-            const prompt = `Explain "${term}" in a concise way for a business leader, focusing on its practical application. Keep it under 50 words.`;
-            const textResult = await callGeminiAPI(prompt);
-            if (textResult) {
-                outputDiv.innerHTML = `<p>${textResult}</p>`;
-                outputDiv.classList.remove('hidden');
-            }
+            outputDiv.innerHTML = `<p class="text-gray-600">AI functionality for "<strong>${term}</strong>" is disabled in this public demo for security reasons (API key visibility). In a fully functional application, this would provide a concise AI-generated explanation.</p>`;
+            outputDiv.classList.remove('hidden');
         });
 
-        // General AI Use Case Idea Generator
-        document.getElementById('generateUseCaseBtn').addEventListener('click', async () => {
+        // General AI Use Case Idea Generator - Button click now triggers demo message
+        document.getElementById('generateUseCaseBtn').addEventListener('click', () => {
             const outputDiv = document.getElementById('useCaseOutput');
-            const prompt = "Generate one unique and practical AI use case for a business leader with experience in Salesforce, RevOps, SalesOps, or Customer Success. The use case should focus on improving operations or customer engagement. Provide only the use case description, no intro or outro. Keep it concise.";
-            const textResult = await callGeminiAPI(prompt);
-            if (textResult) {
-                outputDiv.innerHTML = `<p>${textResult}</p>`;
-                outputDiv.classList.remove('hidden');
-            }
+            outputDiv.innerHTML = `<p class="text-gray-600">AI functionality is disabled in this public demo for security reasons (API key visibility). In a fully functional application, this would brainstorm a new, practical AI use case for business operations.</p>`;
+            outputDiv.classList.remove('hidden');
         });
 
-        // Role-Specific AI Use Case Generator
-        document.getElementById('generateRoleUseCaseBtn').addEventListener('click', async () => {
+        // Role-Specific AI Use Case Generator - Button click now triggers demo message
+        document.getElementById('generateRoleUseCaseBtn').addEventListener('click', () => {
             const role = document.getElementById('roleInput').value.trim();
             const outputDiv = document.getElementById('roleUseCaseOutput');
-            if (!role) {
-                outputDiv.innerHTML = '<p class="text-red-500">Please enter a role.</p>';
-                outputDiv.classList.remove('hidden');
-                return;
-            }
-
-            const prompt = `Generate one unique and practical AI use case for a business leader in the role of "${role}", with experience in Salesforce, RevOps, SalesOps, or Customer Success. The use case should focus on improving operations or customer engagement. Provide only the use case description, no intro or outro. Keep it concise.`;
-            const textResult = await callGeminiAPI(prompt);
-            if (textResult) {
-                outputDiv.innerHTML = `<p>${textResult}</p>`;
-                outputDiv.classList.remove('hidden');
-            }
+            const roleText = role ? `for the role of "<strong>${role}</strong>"` : "";
+            outputDiv.innerHTML = `<p class="text-gray-600">AI functionality ${roleText} is disabled in this public demo for security reasons (API key visibility). In a fully functional application, this would provide a tailored AI use case idea.</p>`;
+            outputDiv.classList.remove('hidden');
         });
 
-        // Quiz functionality removed from here.
     </script>
 </body>
 </html>
