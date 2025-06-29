@@ -88,7 +88,7 @@
 
     <!-- Disclaimer at the very top -->
     <div class="bg-yellow-100 text-yellow-800 p-3 text-center text-sm font-medium rounded-md mx-auto my-4 max-w-4xl border border-yellow-200">
-        This infographic is for demonstration purposes only and the content or implied associations are not indicative of any actual affiliation with the mentioned companies or platforms.
+        This infographic is for demonstration purposes only and its interactive features may not be fully functional. The content or implied associations are not indicative of any actual affiliation with the mentioned companies or platforms.
     </div>
 
     <div class="container mx-auto p-4 md:p-8">
@@ -174,19 +174,7 @@
                         <div id="roleUseCaseLoading" class="hidden text-center mt-4 text-gray-500">Loading...</div>
                         <div id="roleUseCaseOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"></div>
                     </div>
-                    <div class="md:col-span-2">
-                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ Quick AI Terminology Quiz</h3>
-                        <p class="mb-4">Test your knowledge with a multiple-choice question on AI fundamentals!</p>
-                        <button id="generateQuizBtn" class="ai-button w-full mb-4">Generate Quiz Question</button>
-                        <div id="quizLoading" class="hidden text-center mt-4 text-gray-500">Loading...</div>
-                        <div id="quizQuestionOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200 hidden">
-                            <p class="font-semibold mb-3" id="quizQuestionText"></p>
-                            <div id="quizOptions" class="space-y-2"></div>
-                            <input type="hidden" id="correctAnswer" />
-                            <button id="submitQuizBtn" class="ai-button mt-4 w-full">Submit Answer</button>
-                        </div>
-                        <div id="quizFeedbackOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200 hidden"></div>
-                    </div>
+                    <!-- Quiz functionality removed as requested -->
                 </div>
             </section>
 
@@ -288,6 +276,11 @@
         </main>
     </div>
 
+    <!-- Footer with copyright -->
+    <footer class="text-center mt-16 pb-8 text-gray-500 text-sm">
+        <p>Copyright &copy; 2025 marcie-ftc. All rights reserved.</p>
+    </footer>
+
     <script>
         // IMPORTANT: If you are hosting this on GitHub Pages (or any static site outside Google Canvas),
         // you MUST replace `""` below with your actual Google Gemini API Key.
@@ -308,9 +301,8 @@
                 } else {
                     targetOutputDiv = document.getElementById('useCaseOutput');
                 }
-            } else if (prompt.includes("Generate a multiple-choice quiz question")) {
-                targetOutputDiv = document.getElementById('quizFeedbackOutput'); // Quiz feedback for errors
             }
+            // Removed quiz specific targetOutputDiv assignment here
 
             // Clear previous output and show loading
             if (targetOutputDiv) targetOutputDiv.innerHTML = '';
@@ -322,22 +314,7 @@
                 chatHistory.push({ role: "user", parts: [{ text: prompt }] });
 
                 const requestBody = { contents: chatHistory };
-                // Only include responseMimeType and responseSchema for JSON requests (like the quiz)
-                if (isJson) {
-                    requestBody.generationConfig = {
-                        responseMimeType: "application/json",
-                        responseSchema: {
-                            type: "OBJECT",
-                            properties: {
-                                "term": { "type": "STRING" },
-                                "question": { "type": "STRING" },
-                                "options": { "type": "ARRAY", "items": { "type": "STRING" } },
-                                "correctAnswer": { "type": "STRING" },
-                                "explanation": { "type": "STRING" }
-                            }
-                        }
-                    };
-                }
+                // Removed responseSchema for JSON requests as quiz is removed
 
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${apiModel}:generateContent?key=${GOOGLE_API_KEY}`;
                 
@@ -364,13 +341,7 @@
                     result.candidates[0].content.parts.length > 0) {
                     
                     const rawText = result.candidates[0].content.parts[0].text;
-                    if (isJson) {
-                        try {
-                            return JSON.parse(rawText); // Attempt to parse JSON if expected
-                        } catch (e) {
-                            throw new Error(`Invalid JSON received: ${rawText.substring(0, 100)}... (Error: ${e.message})`);
-                        }
-                    }
+                    // Removed JSON parsing logic here as it's no longer needed for quiz
                     return rawText; // Return raw text for non-JSON requests
                 } else {
                     throw new Error("No content received from API.");
@@ -605,79 +576,7 @@
             }
         });
 
-        let currentQuizData = null; // Store quiz data
-
-        // Quick AI Terminology Quiz
-        document.getElementById('generateQuizBtn').addEventListener('click', async () => {
-            const questionOutputDiv = document.getElementById('quizQuestionOutput');
-            const questionTextSpan = document.getElementById('quizQuestionText');
-            const optionsDiv = document.getElementById('quizOptions');
-            const feedbackOutputDiv = document.getElementById('quizFeedbackOutput');
-            const submitBtn = document.getElementById('submitQuizBtn');
-
-            questionOutputDiv.classList.add('hidden');
-            feedbackOutputDiv.classList.add('hidden');
-            optionsDiv.innerHTML = ''; // Clear previous options
-            feedbackOutputDiv.innerHTML = ''; // Clear previous feedback
-            submitBtn.classList.add('hidden'); // Hide submit button until question is loaded
-
-            // Emphasize stricter JSON format in the prompt to reduce malformed responses
-            const prompt = "Generate a single multiple-choice quiz question for a business leader on a fundamental AI term. Output strictly as JSON: {\"term\": \"string\", \"question\": \"string\", \"options\": [\"A) Option\", \"B) Option\", \"C) Option\"], \"correctAnswer\": \"A|B|C\", \"explanation\": \"string\"}. Provide a simple, concise example for options like: [\"A) Learning from data\", \"B) Robots\", \"C) Databases\"].";
-            
-            // callGeminiAPI now handles JSON.parse internally when isJson is true
-            const quizResult = await callGeminiAPI(prompt, true); 
-            
-            if (quizResult) { // quizResult is now already a parsed JSON object or null
-                // Validate essential fields after successful parsing
-                if (!quizResult.question || !Array.isArray(quizResult.options) || quizResult.options.length < 3 || !quizResult.correctAnswer || !quizResult.explanation) {
-                    feedbackOutputDiv.innerHTML = `<p class="text-red-500">Error: Received incomplete or malformed quiz data from the AI. The AI did not provide all required fields or options. Please try again.</p>`;
-                    feedbackOutputDiv.classList.remove('hidden');
-                    return; // Stop execution if data is invalid
-                }
-
-                currentQuizData = quizResult; // Store the valid parsed data
-
-                questionTextSpan.textContent = currentQuizData.question;
-                currentQuizData.options.forEach((option, index) => {
-                    const optionId = `option${index}`;
-                    optionsDiv.innerHTML += `
-                        <div class="quiz-option">
-                            <input type="radio" id="${optionId}" name="quizOption" value="${option[0]}">
-                            <label for="${optionId}">${option}</label>
-                        </div>
-                    `;
-                });
-                document.getElementById('correctAnswer').value = currentQuizData.correctAnswer;
-                questionOutputDiv.classList.remove('hidden');
-                submitBtn.classList.remove('hidden');
-            } else {
-                // Error message already handled by callGeminiAPI if quizResult is null
-                questionOutputDiv.classList.add('hidden');
-                submitBtn.classList.add('hidden');
-            }
-        });
-
-        // Quiz Submission Handler
-        document.getElementById('submitQuizBtn').addEventListener('click', () => {
-            const selectedOption = document.querySelector('input[name="quizOption"]:checked');
-            const feedbackOutputDiv = document.getElementById('quizFeedbackOutput');
-            feedbackOutputDiv.innerHTML = '';
-            feedbackOutputDiv.classList.remove('hidden');
-
-            if (!selectedOption) {
-                feedbackOutputDiv.innerHTML = '<p class="text-red-500">Please select an answer.</p>';
-                return;
-            }
-
-            const userAnswer = selectedOption.value;
-            const correctAnswer = document.getElementById('correctAnswer').value;
-
-            if (userAnswer === correctAnswer) {
-                feedbackOutputDiv.innerHTML = `<p class="font-bold text-green-700">Correct! 🎉</p><p class="mt-2">${currentQuizData.explanation}</p>`;
-            } else {
-                feedbackOutputDiv.innerHTML = `<p class="font-bold text-red-700">Incorrect. The correct answer was ${correctAnswer}.</p><p class="mt-2">${currentQuizData.explanation}</p>`;
-            }
-        });
+        // Quiz functionality removed from here.
     </script>
 </body>
 </html>
