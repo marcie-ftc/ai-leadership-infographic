@@ -9,12 +9,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
+        /* Optimized Color Palette: Deep Purples & Vibrant Accent */
+        :root {
+            --color-primary-dark: #1A002A; /* Very deep purple, almost black */
+            --color-primary-medium: #3E005A; /* Rich, deep purple */
+            --color-primary-light: #6A008F; /* Softer, more vibrant purple */
+            --color-accent: #E0B3FF; /* Bright, electric purple for highlights */
+            --color-accent-light: #F0D9FF; /* Very light accent for subtle elements */
+            --color-accent-medium: #D18EFF; /* Medium accent */
+            --color-accent-dark: #A000E0; /* Darker accent, close to primary-light */
+
+            --color-text-on-dark-bg: #E0E0E0; /* Light gray for text on dark backgrounds */
+            --color-text-on-light-bg: #333333; /* Dark gray for text on light backgrounds (cards) */
+            
+            --color-background: #1A002A; /* Body background is now very dark purple */
+            --color-card-bg: #FFFFFF; /* Cards remain white */
+            --color-border: #CCCCCC; /* Lighter border for inputs, making them visible */
+            --color-error: #FF6B6B; /* Brighter red for errors */
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F0F4F8; 
+            background-color: var(--color-background);
+            color: var(--color-text-on-dark-bg); /* Main body text is light on dark background */
         }
         .card {
-            background-color: white;
+            background-color: var(--color-card-bg);
             border-radius: 0.75rem;
             padding: 1.5rem;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -28,28 +48,28 @@
         }
         .kpi-number {
             font-weight: 800;
-            color: #00A6FB; /* Original sky-500 equivalent */
+            color: var(--color-accent);
             line-height: 1;
         }
         .phase-arrow {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #0582CA; /* Original sky-600 equivalent */
+            color: var(--color-accent); /* Changed to accent color */
         }
         h1, h2, h3 {
-            color: #003554; /* Original deep blue */
+            color: var(--color-accent); /* Headings stand out with accent color */
         }
         .ai-button {
-            background-color: #0582CA; /* Original sky-600 equivalent */
-            color: white;
+            background-color: var(--color-primary-medium);
+            color: var(--color-text-on-dark-bg); /* Button text is light */
             padding: 0.75rem 1.5rem;
             border-radius: 0.5rem;
             font-weight: 600;
             transition: background-color 0.3s ease;
         }
         .ai-button:hover {
-            background-color: #006494; /* Original sky-700 equivalent */
+            background-color: var(--color-primary-dark);
         }
         .quiz-option input[type="radio"] {
             margin-right: 0.5rem;
@@ -60,19 +80,28 @@
         .card-interactive a {
             display: block;
             text-decoration: none;
-            color: inherit;
+            color: inherit; /* Inherit color from parent, which will be dark text on light card */
         }
         .card-interactive a:hover h3 {
-            color: #006494; /* Original sky-700 equivalent */
+            color: var(--color-primary-medium); /* Medium purple on hover for interactive card headings */
         }
-        /* Specific color adjustments for elements - reverted to original sky palette */
-        .text-sky-600 { color: #0582CA; }
-        .text-sky-700 { color: #006494; }
-        .text-sky-800 { color: #003554; }
-        .bg-sky-100 { background-color: #E0F2FE; } /* Lightest sky blue */
-        .bg-sky-200 { background-color: #BAE6FD; } /* Lighter sky blue */
-        .bg-sky-300 { background-color: #7DD3FC; } /* Medium sky blue */
-        .bg-sky-400 { background-color: #38BDF8; } /* Darker sky blue */
+        
+        /* Custom Tailwind-like classes using CSS variables for robust application */
+        .text-primary-dark-custom { color: var(--color-primary-dark); }
+        .text-primary-medium-custom { color: var(--color-primary-medium); }
+        .text-primary-light-custom { color: var(--color-primary-light); }
+        .text-accent-custom { color: var(--color-accent); }
+        .text-text-on-dark-bg-custom { color: var(--color-text-on-dark-bg); }
+        .text-text-on-light-bg-custom { color: var(--color-text-on-light-bg); }
+        .bg-accent-light-custom { background-color: var(--color-accent-light); }
+        .bg-accent-medium-custom { background-color: var(--color-accent-medium); }
+        .bg-accent-dark-custom { background-color: var(--color-accent-dark); }
+        .bg-primary-dark-custom { background-color: var(--color-primary-dark); }
+        .bg-background-custom { background-color: var(--color-background); }
+        .bg-card-bg-custom { background-color: var(--color-card-bg); }
+        .border-color-border-custom { border-color: var(--color-border); }
+        .focus-ring-accent-custom:focus { outline: 2px solid transparent; outline-offset: 2px; box-shadow: 0 0 0 2px var(--color-accent); }
+        .text-error-color-custom { color: var(--color-error); }
 
         /* Responsive adjustments for circular elements */
         .circular-element {
@@ -89,6 +118,7 @@
             text-align: center;
             border-radius: 9999px; /* full rounded */
             font-weight: 700; /* font-bold */
+            word-break: break-word; /* Ensure long words break */
         }
 
         @media (min-width: 640px) { /* sm breakpoint */
@@ -102,9 +132,40 @@
                 line-height: 1.25rem;
             }
         }
+        /* Ensure text within cards wraps and has correct color */
+        .card p, .card ul li, .card ul li strong, .card input, .card div {
+            color: var(--color-text-on-light-bg); /* Default text color for elements inside cards */
+            word-break: break-word;
+        }
+        .card h3 {
+            color: var(--color-primary-dark); /* Headings inside cards are dark purple */
+        }
+        .card a {
+            color: var(--color-primary-medium); /* Links inside cards are medium purple */
+        }
+        .card a:hover {
+            color: var(--color-primary-dark); /* Darker purple on hover for links */
+        }
+        /* Overrides for specific elements that need light text on dark background within cards */
+        .circular-element.bg-primary-dark-custom {
+            color: var(--color-text-on-dark-bg);
+        }
+        .circular-element.bg-accent-dark-custom {
+            color: var(--color-text-on-dark-bg);
+        }
+        .circular-element.bg-accent-medium-custom {
+            color: var(--color-text-on-dark-bg);
+        }
+        /* Fix for AI output/loading div backgrounds */
+        #aiExplanationOutput, #useCaseOutput, #roleUseCaseOutput {
+            background-color: var(--color-card-bg); /* Ensure these are white like the card */
+        }
+        #aiExplanationLoading, #useCaseLoading, #roleUseCaseLoading {
+            color: var(--color-text-on-light-bg); /* Ensure loading text is readable */
+        }
     </style>
 </head>
-<body class="text-gray-700">
+<body class="text-text-on-dark-bg-custom bg-background-custom">
 
     <!-- Disclaimer at the very top -->
     <div class="bg-yellow-100 text-yellow-800 p-3 text-center text-sm font-medium rounded-md mx-auto my-4 max-w-4xl border border-yellow-200">
@@ -114,29 +175,40 @@
     <div class="container mx-auto p-4 md:p-8">
 
         <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-2">Your Roadmap to AI Leadership</h1>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">A personalized micro-learning plan for business leaders in Operations, Customer Success, and Salesforce.</p>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-2 text-accent-custom">Your Roadmap to AI Leadership</h1>
+            <p class="text-lg md:text-xl text-text-on-dark-bg-custom max-w-3xl mx-auto">A personalized micro-learning plan for business leaders in Operations, Customer Success, and Salesforce.</p>
         </header>
 
         <section id="journey" class="mb-16">
-            <h2 class="text-3xl font-bold text-center mb-8">The 3-Phase Journey</h2>
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center text-center">
-                <div class="card p-4">
-                    <h3 class="font-bold text-xl mb-1">Phase 1</h3>
-                    <p class="font-semibold text-lg text-sky-600">Fundamentals</p>
-                    <p class="text-sm">2-4 Weeks</p>
+            <h2 class="text-3xl font-bold text-center mb-8 text-accent-custom">The 3-Phase Journey</h2>
+            <div class="flex flex-col items-center space-y-4 md:space-y-6"> <!-- Reduced space-y -->
+                <!-- Phase 1 Block -->
+                <div class="w-full text-center">
+                    <h3 class="text-2xl font-bold mb-1 text-primary-dark-custom">Phase 1: Fundamentals</h3> <!-- Reduced mb -->
+                    <div class="card p-4 mx-auto max-w-xs sm:max-w-sm md:max-w-md">
+                        <p class="font-semibold text-lg text-primary-light-custom">Build a strong foundation.</p>
+                        <p class="text-sm text-text-on-light-bg-custom">2-4 Weeks</p>
+                    </div>
                 </div>
-                <div class="phase-arrow text-4xl hidden md:block">&rarr;</div>
-                <div class="card p-4">
-                    <h3 class="font-bold text-xl mb-1">Phase 2</h3>
-                    <p class="font-semibold text-lg text-sky-700">Domain Application</p>
-                    <p class="text-sm">4-6 Weeks</p>
+                <div class="phase-arrow text-4xl">&darr;</div>
+
+                <!-- Phase 2 Block -->
+                <div class="w-full text-center">
+                    <h3 class="text-2xl font-bold mb-1 text-primary-dark-custom">Phase 2: Domain Application</h3> <!-- Reduced mb -->
+                    <div class="card p-4 mx-auto max-w-xs sm:max-w-sm md:max-w-md">
+                        <p class="font-semibold text-lg text-primary-medium-custom">Apply AI to your expertise.</p>
+                        <p class="text-sm text-text-on-light-bg-custom">4-6 Weeks</p>
+                    </div>
                 </div>
-                <div class="phase-arrow text-4xl hidden md:block">&rarr;</div>
-                <div class="card p-4">
-                    <h3 class="font-bold text-xl mb-1">Phase 3</h3>
-                    <p class="font-semibold text-lg text-sky-800">Practical Projects</p>
-                    <p class="text-sm">Ongoing</p>
+                <div class="phase-arrow text-4xl">&darr;</div>
+
+                <!-- Phase 3 Block -->
+                <div class="w-full text-center">
+                    <h3 class="text-2xl font-bold mb-1 text-primary-dark-custom">Phase 3: Practical Projects</h3> <!-- Reduced mb -->
+                    <div class="card p-4 mx-auto max-w-xs sm:max-w-sm md:max-w-md">
+                        <p class="font-semibold text-lg text-primary-dark-custom">Continuously learn by doing.</p>
+                        <p class="text-sm text-text-on-light-bg-custom">Ongoing</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -144,34 +216,32 @@
         <main class="space-y-16">
 
             <section id="phase1">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div class="order-2 md:order-1">
-                        <h2 class="text-3xl font-bold mb-4">Phase 1: AI Fundamentals & Business Impact</h2>
-                        <p class="mb-6">The goal is to build a strong foundation. Understand core AI concepts, key terminology, and how AI creates tangible value in a business context. This phase is about learning the language of AI to inform strategic decisions.</p>
-                        <div class="card">
-                            <h3 class="font-bold text-xl mb-4">Key Learning Modules</h3>
-                            <ul class="list-disc list-inside space-y-2">
-                                <li>Differentiating AI, Machine Learning & Deep Learning</li>
-                                <li>AI Use Cases in Sales, Marketing, and Operations</li>
-                                <li>Data Governance and Quality for AI</li>
-                                <li>Understanding AI Ethics and Bias</li>
-                            </ul>
-                        </div>
+                <h2 class="text-3xl font-bold mb-4 text-accent-custom text-center">Phase 1: AI Fundamentals & Business Impact</h2>
+                <p class="mb-6 text-text-on-dark-bg-custom text-center max-w-3xl mx-auto">The goal is to build a strong foundation. Understand core AI concepts, key terminology, and how AI creates tangible value in a business context. This phase is about learning the language of AI to inform strategic decisions.</p>
+                <div class="grid grid-cols-1 gap-8 items-start">
+                    <div class="card p-6 mx-auto w-full md:max-w-3xl">
+                        <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">Key Learning Modules</h3>
+                        <ul class="list-disc list-inside space-y-2 text-text-on-light-bg-custom">
+                            <li>Differentiating AI, Machine Learning & Deep Learning</li>
+                            <li>AI Use Cases in Sales, Marketing, and Operations</li>
+                            <li>Data Governance and Quality for AI</li>
+                            <li>Understanding AI Ethics and Bias</li>
+                        </ul>
                     </div>
-                    <div class="card order-1 md:order-2 p-6">
-                        <h3 class="font-bold text-xl mb-4 text-sky-800">📊 Resource Mix for Phase 1</h3>
-                        <ul class="space-y-3">
+                    <div class="card p-6 mx-auto w-full md:max-w-3xl">
+                        <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">📊 Resource Mix for Phase 1</h3>
+                        <ul class="space-y-3 text-text-on-light-bg-custom">
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">💻</span>
-                                <div><strong class="text-sky-700"><a href="https://www.coursera.org/courses?query=ai%20for%20everyone" target="_blank">Online Courses</a>:</strong> 50% (e.g., Coursera, IBM Education)</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://www.coursera.org/courses?query=ai%20for%20everyone" target="_blank">Online Courses</a>:</strong> 50% (e.g., Coursera, IBM Education)</div>
                             </li>
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">▶️</span>
-                                <div><strong class="text-sky-700"><a href="https://www.youtube.com/results?search_query=introduction+to+ai+for+business" target="_blank">YouTube Explainers</a>:</strong> 35% (e.g., IBM Technology, Google AI)</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://www.youtube.com/results?search_query=introduction+to+ai+for+business" target="_blank">YouTube Explainers</a>:</strong> 35% (e.g., IBM Technology, Google AI)</div>
                             </li>
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">🎤</span>
-                                <div><strong class="text-sky-700"><a href="https://cloud.google.com/events" target="_blank">Webinars & Events</a>:</strong> 15% (e.g., Google Cloud, Microsoft Azure)</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://cloud.google.com/events" target="_blank">Webinars & Events</a>:</strong> 15% (e.g., Google Cloud, Microsoft Azure)</div>
                             </li>
                         </ul>
                     </div>
@@ -179,95 +249,91 @@
             </section>
 
             <section id="phase2">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div class="card p-6">
-                        <h3 class="font-bold text-xl mb-4 text-sky-800">🎓 Domain-Specific Focus Areas</h3>
-                        <ul class="space-y-3">
+                <h2 class="text-3xl font-bold mb-4 text-accent-custom text-center">Phase 2: AI in Your Domain</h2>
+                <p class="mb-6 text-text-on-dark-bg-custom text-center max-w-3xl mx-auto">This phase deepens your understanding of AI applications directly relevant to your expertise in RevOps, SalesOps, and Salesforce. The focus shifts from theory to practical, role-specific knowledge.</p>
+                <div class="grid grid-cols-1 gap-8 items-start">
+                    <div class="card p-6 mx-auto w-full md:max-w-3xl">
+                        <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">🎓 Domain-Specific Focus Areas</h3>
+                        <ul class="space-y-3 text-text-on-light-bg-custom">
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">☁️</span>
-                                <div><strong class="text-sky-700"><a href="https://trailhead.salesforce.com/content/learn/modules/ai_basics_for_business" target="_blank">AI in CRM (Salesforce)</a>:</strong> 95% Importance</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://trailhead.salesforce.com/content/learn/modules/ai_basics_for_business" target="_blank">AI in CRM (Salesforce)</a>:</strong> 95% Importance</div>
                             </li>
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">📈</span>
-                                <div><strong class="text-sky-700"><a href="https://cloud.google.com/solutions/predictive-analytics" target="_blank">Predictive Analytics</a>:</strong> 85% Importance</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://cloud.google.com/solutions/predictive-analytics" target="_blank">Predictive Analytics</a>:</strong> 85% Importance</div>
                             </li>
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">🗣️</span>
-                                <div><strong class="text-sky-700"><a href="https://cloud.google.com/ai/generative-ai/docs/learn/conversational-ai" target="_blank">Conversational AI</a>:</strong> 75% Importance</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://cloud.google.com/ai/generative-ai/docs/learn/conversational-ai" target="_blank">Conversational AI</a>:</strong> 75% Importance</div>
                             </li>
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">⚙️</span>
-                                <div><strong class="text-sky-700"><a href="https://cloud.google.com/solutions/intelligent-automation" target="_blank">Process Automation</a>:</strong> 80% Importance</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://cloud.google.com/solutions/intelligent-automation" target="_blank">Process Automation</a>:</strong> 80% Importance</div>
                             </li>
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">🔍</span>
-                                <div><strong class="text-sky-700"><a href="https://cloud.google.com/solutions/data-analytics-ai" target="_blank">AI for Data Analysis</a>:</strong> 90% Importance</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://cloud.google.com/solutions/data-analytics-ai" target="_blank">AI for Data Analysis</a>:</b> 90% Importance</div>
                             </li>
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">✍️</span>
-                                <div><strong class="text-sky-700"><a href="https://ai.google.dev/docs/prompt_engineering_intro" target="_blank">Prompt Engineering</a>:</strong> 88% Importance</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://ai.google.dev/docs/prompt_engineering_intro" target="_blank">Prompt Engineering</a>:</strong> 88% Importance</div>
                             </li>
                         </ul>
                     </div>
-                    <div>
-                        <h2 class="text-3xl font-bold mb-4">Phase 2: AI in Your Domain</h2>
-                        <p class="mb-6">This phase deepens your understanding of AI applications directly relevant to your expertise in RevOps, SalesOps, and Salesforce. The focus shifts from theory to practical, role-specific knowledge.</p>
-                         <div class="card">
-                            <h3 class="font-bold text-xl mb-4">Critical Resources</h3>
-                            <ul class="space-y-3">
-                                <li class="flex items-center"><span class="text-2xl mr-3">☁️</span><div><strong class="text-sky-700"><a href="https://trailhead.salesforce.com/" target="_blank">Salesforce Trailhead</a>:</strong> Master Einstein AI basics and business applications.</div></li>
-                                <li class="flex items-center"><span class="text-2xl mr-3">💬</span><div><strong class="text-sky-700"><a href="https://gemini.google.com/" target="_blank">Generative AI Tools</a>:</strong> Practice prompt engineering on ChatGPT & Google Gemini.</div></li>
-                                <li class="flex items-center"><span class="text-2xl mr-3">📺</span><div><strong class="text-sky-700"><a href="https://www.gong.io/resources/webinars/" target="_blank">Targeted Webinars</a>:</strong> Learn from industry leaders like Gong and HubSpot.</div></li>
-                            </ul>
-                        </div>
+                    <div class="card p-6 mx-auto w-full md:max-w-3xl">
+                        <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">Critical Resources</h3>
+                        <ul class="space-y-3 text-text-on-light-bg-custom">
+                            <li class="flex items-center"><span class="text-2xl mr-3">☁️</span><div><strong class="text-primary-medium-custom"><a href="https://trailhead.salesforce.com/" target="_blank">Salesforce Trailhead</a>:</strong> Master Einstein AI basics and business applications.</div></li>
+                            <li class="flex items-center"><span class="text-2xl mr-3">💬</span><div><strong class="text-primary-medium-custom"><a href="https://gemini.google.com/" target="_blank">Generative AI Tools</a>:</strong> Practice prompt engineering on ChatGPT & Google Gemini.</div></div></li>
+                            <li class="flex items-center"><span class="text-2xl mr-3">📺</span><div><strong class="text-accent-custom"><a href="https://www.gong.io/resources/webinars/" target="_blank">Targeted Webinars</a>:</strong> Learn from industry leaders like Gong and HubSpot.</div></li>
+                        </ul>
                     </div>
                 </div>
             </section>
             
             <section id="phase3">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div class="order-2 md:order-1">
-                        <h2 class="text-3xl font-bold mb-4">Phase 3: Practical Application</h2>
-                        <p class="mb-6">Knowledge becomes power through application. This ongoing phase is about continuously applying what you've learned to solve real-world business problems, turning theoretical understanding into strategic impact.</p>
-                        <div class="card">
-                            <h3 class="font-bold text-xl mb-4">The Application Cycle</h3>
-                             <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-2">
-                                <div class="circular-element bg-sky-100">Identify Pain Point</div>
-                                <div class="phase-arrow text-2xl">&darr;</div>
-                                <div class="circular-element bg-sky-200">Research Solutions</div>
-                                 <div class="phase-arrow text-2xl">&darr;</div>
-                                <div class="circular-element bg-sky-300">Experiment w/ Tools</div>
-                                 <div class="phase-arrow text-2xl">&darr;</div>
-                                <div class="circular-element bg-sky-400 text-white">Refine & Scale</div>
-                            </div>
+                <h2 class="text-3xl font-bold mb-4 text-accent-custom text-center">Phase 3: Practical Application</h2>
+                <p class="mb-6 text-text-on-dark-bg-custom text-center max-w-3xl mx-auto">Knowledge becomes power through application. This ongoing phase is about continuously applying what you've learned to solve real-world business problems, turning theoretical understanding into strategic impact.</p>
+                <div class="grid grid-cols-1 gap-8 items-start">
+                    <div class="card p-6 mx-auto w-full md:max-w-3xl">
+                        <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">The Application Cycle</h3>
+                         <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-2 flex-wrap">
+                            <div class="circular-element bg-accent-light-custom text-text-on-light-bg-custom">Identify Pain Point</div>
+                            <div class="phase-arrow text-2xl hidden md:block">&darr;</div>
+                            <div class="circular-element bg-accent-medium-custom text-text-on-dark-bg-custom">Research Solutions</div>
+                             <div class="phase-arrow text-2xl hidden md:block">&darr;</div>
+                            <div class="circular-element bg-accent-dark-custom text-text-on-dark-bg-custom">Experiment w/ Tools</div>
+                             <div class="phase-arrow text-2xl hidden md:block">&darr;</div>
+                            <div class="circular-element bg-primary-dark-custom text-text-on-dark-bg-custom">Refine & Scale</div>
                         </div>
                     </div>
-                    <div class="card order-1 md:order-2 p-6">
-                        <h3 class="font-bold text-xl mb-4 text-sky-800">💡 Essential AI Platform Categories</h3>
-                        <ul class="space-y-3">
+                    <div class="card p-6 mx-auto w-full md:max-w-3xl">
+                        <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">💡 Essential AI Platform Categories</h3>
+                        <ul class="space-y-3 text-text-on-light-bg-custom">
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">CRM</span>
-                                <div><strong class="text-sky-700"><a href="https://www.salesforce.com/products/einstein/overview/" target="_blank">Salesforce Einstein AI</a>:</strong> Native AI capabilities.</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://www.salesforce.com/products/einstein/overview/" target="_blank">Salesforce Einstein AI</a>:</strong> Native AI capabilities.</div>
                             </li>
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">🤖</span>
-                                <div><strong class="text-sky-700"><a href="https://gemini.google.com/" target="_blank">Generative AI Tools</a>:</strong> ChatGPT, Gemini, Claude proficiency.</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://gemini.google.com/" target="_blank">Generative AI Tools</a>:</strong> ChatGPT, Gemini, Claude proficiency.</div>
                             </li>
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">💰</span>
-                                <div><strong class="text-sky-700"><a href="https://www.gong.io/" target="_blank">RevOps Platforms</a>:</strong> Gong, Clari, Chorus AI for sales intelligence.</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://www.gong.io/" target="_blank">RevOps Platforms</a>:</strong> Gong, Clari, Chorus AI for sales intelligence.</div>
                             </li>
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">📞</span>
-                                <div><strong class="text-sky-700"><a href="https://www.zendesk.com/service/ai/" target="_blank">Customer Service AI</a>:</strong> Zendesk, Intercom for support.</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://www.zendesk.com/service/ai/" target="_blank">Customer Service AI</a>:</strong> Zendesk, Intercom for support.</div>
                             </li>
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">📊</span>
-                                <div><strong class="text-sky-700"><a href="https://www.tableau.com/products/ai" target="_blank">Business Intelligence (BI) with AI</a>:</strong> Tableau, Power BI insights.</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://www.tableau.com/products/ai" target="_blank">Business Intelligence (BI) with AI</a>:</b> Tableau, Power BI insights.</div>
                             </li>
                             <li class="flex items-center">
                                 <span class="text-2xl mr-3">☁️</span>
-                                <div><strong class="text-sky-700"><a href="https://cloud.google.com/vertex-ai" target="_blank">Cloud AI Platforms</a>:</strong> Vertex AI, Azure AI, SageMaker overview.</div>
+                                <div><strong class="text-primary-medium-custom"><a href="https://cloud.google.com/vertex-ai" target="_blank">Cloud AI Platforms</a>:</strong> Vertex AI, Azure AI, SageMaker overview.</div>
                             </li>
                         </ul>
                     </div>
@@ -275,42 +341,42 @@
             </section>
             
             <section id="platforms" class="mb-12">
-                 <h2 class="text-3xl font-bold text-center mb-8">Your AI Leadership Arsenal</h2>
+                 <h2 class="text-3xl font-bold text-center mb-8 text-accent-custom">Your AI Leadership Arsenal</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="card card-interactive">
                         <a href="https://www.salesforce.com/products/einstein/overview/" target="_blank">
-                            <h3 class="font-bold text-xl mb-3 text-sky-800">1. Salesforce Einstein AI</h3>
-                            <p>Paramount for your background. Master the native AI capabilities within the ecosystem you already command.</p>
+                            <h3 class="font-bold text-xl mb-3 text-primary-dark-custom">1. Salesforce Einstein AI</h3>
+                            <p class="text-text-on-light-bg-custom">Paramount for your background. Master the native AI capabilities within the ecosystem you already command.</p>
                         </a>
                     </div>
                     <div class="card card-interactive">
                         <a href="https://gemini.google.com/" target="_blank">
-                            <h3 class="font-bold text-xl mb-3 text-sky-700">2. Generative AI Tools</h3>
-                            <p>Proficiency in ChatGPT, Gemini, and Claude for content, analysis, and communication is non-negotiable for modern leaders.</p>
+                            <h3 class="font-bold text-xl mb-3 text-primary-medium-custom">2. Generative AI Tools</h3>
+                            <p class="text-text-on-light-bg-custom">Proficiency in ChatGPT, Gemini, and Claude for content, analysis, and communication is non-negotiable for modern leaders.</p>
                         </a>
                     </div>
                     <div class="card card-interactive">
                         <a href="https://www.gong.io/" target="_blank">
-                            <h3 class="font-bold text-xl mb-3 text-sky-600">3. RevOps Platforms</h3>
-                            <p>Understand AI in Gong, Clari, and Outreach to grasp sales conversation intelligence and forecasting.</p>
+                            <h3 class="font-bold text-xl mb-3 text-primary-light-custom">3. RevOps Platforms</h3>
+                            <p class="text-text-on-light-bg-custom">Understand AI in Gong, Clari, and Outreach to grasp sales conversation intelligence and forecasting.</p>
                         </a>
                     </div>
                      <div class="card card-interactive">
                         <a href="https://www.zendesk.com/service/ai/" target="_blank">
-                            <h3 class="font-bold text-xl mb-3 text-sky-800">4. Customer Service AI</h3>
-                            <p>Familiarize with AI in Zendesk, Intercom, and Drift for ticketing, chatbots, and agent assistance.</p>
+                            <h3 class="font-bold text-xl mb-3 text-primary-dark-custom">4. Customer Service AI</h3>
+                            <p class="text-text-on-light-bg-custom">Familiarize with AI in Zendesk, Intercom, and Drift for ticketing, chatbots, and agent assistance.</p>
                         </a>
                     </div>
                     <div class="card card-interactive">
                         <a href="https://www.tableau.com/products/ai" target="_blank">
-                            <h3 class="font-bold text-xl mb-3 text-sky-700">5. Business Intelligence (BI)</h3>
-                            <p>Leverage AI features within Tableau and Power BI for natural language querying and deeper data insights.</p>
+                            <h3 class="font-bold text-xl mb-3 text-primary-medium-custom">5. Business Intelligence (BI)</h3>
+                            <p class="text-text-on-light-bg-custom">Leverage AI features within Tableau and Power BI for natural language querying and deeper data insights.</p>
                             </a>
                     </div>
                     <div class="card card-interactive">
                         <a href="https://cloud.google.com/vertex-ai" target="_blank">
-                            <h3 class="font-bold text-xl mb-3 text-sky-600">6. Cloud AI Platforms</h3>
-                            <p>Grasp the business purpose of Google Vertex AI, Azure AI, and AWS SageMaker to understand deployment potential.</p>
+                            <h3 class="font-bold text-xl mb-3 text-primary-light-custom">6. Cloud AI Platforms</h3>
+                            <p class="text-text-on-light-bg-custom">Grasp the business purpose of Google Vertex AI, Azure AI, and AWS SageMaker to understand deployment potential.</p>
                         </a>
                     </div>
                 </div>
@@ -318,30 +384,31 @@
 
             <!-- Moved AI interactive tools section AFTER platforms -->
             <section id="ai-interactive-tools" class="mb-12">
-                <h2 class="text-3xl font-bold text-center mb-8">Experiment with AI Tools</h2>
+                <h2 class="text-3xl font-bold text-center mb-8 text-accent-custom">Experiment with AI Tools</h2>
                 <div class="card grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ AI Concept Explainer: Clarify Complex Terms</h3>
-                        <p class="mb-4">Quickly get concise, business-focused explanations for any AI term. This feature demonstrates how AI can simplify complex jargon for leaders.</p>
-                        <input type="text" id="aiTermInput" placeholder="e.g., Machine Learning" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-sky-500">
+                        <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">✨ AI Concept Explainer: Clarify Complex Terms</h3>
+                        <p class="mb-4 text-text-on-light-bg-custom">Quickly get concise, business-focused explanations for any AI term. This feature demonstrates how AI can simplify complex jargon for leaders.</p>
+                        <input type="text" id="aiTermInput" placeholder="e.g., Machine Learning" class="w-full p-2 rounded-md mb-4 border border-color-border-custom focus-ring-accent-custom text-text-on-light-bg-custom">
                         <button id="explainAiTermBtn" class="ai-button w-full">Explain Term</button>
-                        <div id="aiExplanationLoading" class="hidden text-center mt-4 text-gray-500">Loading...</div>
-                        <div id="aiExplanationOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"></div>
+                        <div id="aiExplanationLoading" class="hidden text-center mt-4 text-text-on-light-bg-custom">Loading...</div>
+                        <div id="aiExplanationOutput" class="mt-4 p-4 rounded-md bg-card-bg-custom border-color-border-custom text-text-on-light-bg-custom"></div>
                     </div>
                      <div>
-                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ General AI Use Case Idea Generator: Innovate Operations</h3>
-                        <p class="mb-4">Spark new ideas! This tool can brainstorm practical AI use cases to improve general business operations and customer engagement.</p>
+                        <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">✨ General AI Use Case Idea Generator: Innovate Operations</h3>
+                        <p class="mb-4 text-text-on-light-bg-custom">Spark new ideas! This tool can brainstorm practical AI use cases to improve general business operations and customer engagement.</p>
+                        <input type="text" id="generalUseCaseInput" placeholder="e.g., Customer Onboarding" class="w-full p-2 rounded-md mb-4 border border-color-border-custom focus-ring-accent-custom text-text-on-light-bg-custom">
                         <button id="generateUseCaseBtn" class="ai-button w-full">Generate Use Case Idea</button>
-                        <div id="useCaseLoading" class="hidden text-center mt-4 text-gray-500">Loading...</div>
-                        <div id="useCaseOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"></div>
+                        <div id="useCaseLoading" class="hidden text-center mt-4 text-text-on-light-bg-custom">Loading...</div>
+                        <div id="useCaseOutput" class="mt-4 p-4 rounded-md bg-card-bg-custom border-color-border-custom text-text-on-light-bg-custom"></div>
                     </div>
                     <div class="md:col-span-2">
-                        <h3 class="font-bold text-xl mb-4 text-sky-800">✨ Role-Specific AI Use Case Generator: Tailored Impact</h3>
-                        <p class="mb-4">Discover how AI can specifically benefit your role. Enter a job title to generate tailored AI use case ideas for your domain.</p>
-                        <input type="text" id="roleInput" placeholder="e.g., Sales Operations Lead" class="w-full p-2 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-sky-500">
+                        <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">✨ Role-Specific AI Use Case Generator: Tailored Impact</h3>
+                        <p class="mb-4 text-text-on-light-bg-custom">Discover how AI can specifically benefit your role. Enter a job title to generate tailored AI use case ideas for your domain.</p>
+                        <input type="text" id="roleInput" placeholder="e.g., Sales Operations Lead" class="w-full p-2 rounded-md mb-4 border border-color-border-custom focus-ring-accent-custom text-text-on-light-bg-custom">
                         <button id="generateRoleUseCaseBtn" class="ai-button w-full">Generate Role-Specific Idea</button>
-                        <div id="roleUseCaseLoading" class="hidden text-center mt-4 text-gray-500">Loading...</div>
-                        <div id="roleUseCaseOutput" class="mt-4 p-4 bg-gray-50 rounded-md border border-gray-200"></div>
+                        <div id="roleUseCaseLoading" class="hidden text-center mt-4 text-text-on-light-bg-custom">Loading...</div>
+                        <div id="roleUseCaseOutput" class="mt-4 p-4 rounded-md bg-card-bg-custom border-color-border-custom text-text-on-light-bg-custom"></div>
                     </div>
                 </div>
             </section>
@@ -351,12 +418,12 @@
     <!-- LinkedIn Badge HTML -->
     <div class="flex justify-center mt-12 mb-4">
         <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="marcie-ramirez-ftc" data-version="v1">
-            <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/marcie-ramirez-ftc?trk=profile-badge">Marcie Ramirez CSM, CSPO</a>
+            <a class="badge-base__link LI-simple-link text-accent-custom" href="https://www.linkedin.com/in/marcie-ramirez-ftc?trk=profile-badge">Marcie Ramirez CSM, CSPO</a>
         </div>
     </div>
 
     <!-- Footer with copyright -->
-    <footer class="text-center mt-4 pb-8 text-gray-500 text-sm">
+    <footer class="text-center mt-4 pb-8 text-text-subtle-custom">
         <p>Copyright &copy; 2025 marcie-ftc. All rights reserved.</p>
     </footer>
 
@@ -367,7 +434,7 @@
         // WARNING: This API key is directly embedded in client-side code for demo purposes.
         // This is NOT a secure practice for production applications.
         // For secure applications, API keys should be managed on a backend server.
-        const GOOGLE_API_KEY = ""; 
+        const GOOGLE_API_KEY = "AIzaSyDKrvtuX3f4f_8EfklCK9RrdHqBB4VaKx0"; 
 
         // Utility function to make API calls
         async function callGeminiAPI(prompt, outputDivId, loadingDivId, apiModel = 'gemini-2.0-flash') {
@@ -417,7 +484,7 @@
                 }
             } catch (error) {
                 console.error(`Gemini API call failed for prompt "${prompt.substring(0, 50)}...":`, error);
-                const displayMessage = `<p class="text-red-500">Error: ${error.message}. Please try again.</p>`;
+                const displayMessage = `<p class="text-error-color-custom">Error: ${error.message}. Please try again.</p>`;
                 outputDiv.innerHTML = displayMessage;
                 outputDiv.classList.remove('hidden');
                 return null;
@@ -430,7 +497,7 @@
         document.getElementById('explainAiTermBtn').addEventListener('click', async () => {
             const term = document.getElementById('aiTermInput').value.trim();
             if (!term) {
-                document.getElementById('aiExplanationOutput').innerHTML = '<p class="text-red-500">Please enter an AI term.</p>';
+                document.getElementById('aiExplanationOutput').innerHTML = '<p class="text-error-color-custom">Please enter an AI term.</p>';
                 document.getElementById('aiExplanationOutput').classList.remove('hidden');
                 return;
             }
@@ -448,7 +515,7 @@
         document.getElementById('generateRoleUseCaseBtn').addEventListener('click', async () => {
             const role = document.getElementById('roleInput').value.trim();
             if (!role) {
-                document.getElementById('roleUseCaseOutput').innerHTML = '<p class="text-red-500">Please enter a role.</p>';
+                document.getElementById('roleUseCaseOutput').innerHTML = '<p class="text-error-color-custom">Please enter a role.</p>';
                 document.getElementById('roleUseCaseOutput').classList.remove('hidden');
                 return;
             }
