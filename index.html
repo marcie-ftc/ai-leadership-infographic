@@ -9,23 +9,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Optimized Color Palette: Deep Purples & Vibrant Accent */
+        /* Optimized Color Palette: Green & Teal Variations */
         :root {
-            --color-primary-dark: #1A002A; /* Very deep purple, almost black */
-            --color-primary-medium: #3E005A; /* Rich, deep purple */
-            --color-primary-light: #6A008F; /* Softer, more vibrant purple */
-            --color-accent: #E0B3FF; /* Bright, electric purple for highlights */
-            --color-accent-light: #F0D9FF; /* Very light accent for subtle elements */
-            --color-accent-medium: #D18EFF; /* Medium accent */
-            --color-accent-dark: #A000E0; /* Darker accent, close to primary-light */
+            --color-primary-dark: #004D40; /* Deep Teal - for elements on light backgrounds */
+            --color-primary-medium: #00838F; /* Vibrant Ocean Blue - new background color, also for links/buttons */
+            --color-primary-light: #4DD0E1; /* Sky Blue / Aqua - for elements on light backgrounds */
+            --color-accent: #A5D6A7; /* Soft Beachy Green - main highlight color (headings on dark bg, copyright) */
+            --color-accent-light: #DCEDC8; /* Very Light Green/Cream - for circular elements background */
+            --color-accent-medium: #8BC34A; /* Medium Beachy Green - for circular elements background */
+            --color-accent-dark: #4CAF50; /* Vibrant Green - for darker circular elements, replacing orange */
 
-            --color-text-on-dark-bg: #E0E0E0; /* Light gray for text on dark backgrounds */
-            --color-text-on-light-bg: #333333; /* Dark gray for text on light backgrounds (cards) */
+            --color-text-on-dark-bg: #E0F2F7; /* Light Aqua-tinted White - for text on dark blue background */
+            --color-text-on-light-bg: #263238; /* Dark Blue-Gray - for text on white cards */
             
-            --color-background: #1A002A; /* Body background is now very dark purple */
-            --color-card-bg: #FFFFFF; /* Cards remain white */
-            --color-border: #CCCCCC; /* Lighter border for inputs, making them visible */
-            --color-error: #FF6B6B; /* Brighter red for errors */
+            --color-background: #00838F; /* Vibrant Ocean Blue - body background */
+            --color-card-bg: #FFFFFF; /* White - card backgrounds */
+            --color-border: #B0BEC5; /* Light Blue-Gray - input borders */
+            --color-error: #FF6B6B; /* Red - error messages */
         }
 
         body {
@@ -83,7 +83,7 @@
             color: inherit; /* Inherit color from parent, which will be dark text on light card */
         }
         .card-interactive a:hover h3 {
-            color: var(--color-primary-medium); /* Medium purple on hover for interactive card headings */
+            color: var(--color-primary-medium); /* Medium blue on hover for interactive card headings */
         }
         
         /* Custom Tailwind-like classes using CSS variables for robust application */
@@ -138,13 +138,13 @@
             word-break: break-word;
         }
         .card h3 {
-            color: var(--color-primary-dark); /* Headings inside cards are dark purple */
+            color: var(--color-primary-dark); /* Headings inside cards are deep teal */
         }
         .card a {
-            color: var(--color-primary-medium); /* Links inside cards are medium purple */
+            color: var(--color-primary-medium); /* Links inside cards are vibrant ocean blue */
         }
         .card a:hover {
-            color: var(--color-primary-dark); /* Darker purple on hover for links */
+            color: var(--color-primary-dark); /* Darker teal on hover for links */
         }
         /* Overrides for specific elements that need light text on dark background within cards */
         .circular-element.bg-primary-dark-custom {
@@ -157,12 +157,15 @@
             color: var(--color-text-on-dark-bg);
         }
         /* Fix for AI output/loading div backgrounds */
-        #aiExplanationOutput, #useCaseOutput, #roleUseCaseOutput {
+        .ai-output-div {
             background-color: var(--color-card-bg); /* Ensure these are white like the card */
+            border-color: var(--color-border);
+            color: var(--color-text-on-light-bg);
         }
-        #aiExplanationLoading, #useCaseLoading, #roleUseCaseLoading {
+        .ai-loading-div {
             color: var(--color-text-on-light-bg); /* Ensure loading text is readable */
         }
+        
     </style>
 </head>
 <body class="text-text-on-dark-bg-custom bg-background-custom">
@@ -184,9 +187,9 @@
             <div class="flex flex-col items-center space-y-4 md:space-y-6"> <!-- Reduced space-y -->
                 <!-- Phase 1 Block -->
                 <div class="w-full text-center">
-                    <h3 class="text-2xl font-bold mb-1 text-primary-dark-custom">Phase 1: Fundamentals</h3> <!-- Reduced mb -->
+                    <h3 class="text-2xl font-bold mb-1 text-accent-custom">Phase 1: Fundamentals</h3> <!-- Changed to accent-custom -->
                     <div class="card p-4 mx-auto max-w-xs sm:max-w-sm md:max-w-md">
-                        <p class="font-semibold text-lg text-primary-light-custom leading-tight">Build a strong foundation.</p>
+                        <p class="font-semibold text-lg text-text-on-light-bg-custom leading-tight">Build a strong foundation.</p>
                         <p class="text-sm text-text-on-light-bg-custom leading-tight">2-4 Weeks</p>
                     </div>
                 </div>
@@ -194,9 +197,9 @@
 
                 <!-- Phase 2 Block -->
                 <div class="w-full text-center">
-                    <h3 class="text-2xl font-bold mb-1 text-primary-dark-custom">Phase 2: Domain Application</h3> <!-- Reduced mb -->
+                    <h3 class="text-2xl font-bold mb-1 text-accent-custom">Phase 2: Domain Application</h3> <!-- Changed to accent-custom -->
                     <div class="card p-4 mx-auto max-w-xs sm:max-w-sm md:max-w-md">
-                        <p class="font-semibold text-lg text-primary-medium-custom leading-tight">Apply AI to your expertise.</p>
+                        <p class="font-semibold text-lg text-text-on-light-bg-custom leading-tight">Apply AI to your expertise.</p>
                         <p class="text-sm text-text-on-light-bg-custom leading-tight">4-6 Weeks</p>
                     </div>
                 </div>
@@ -204,9 +207,9 @@
 
                 <!-- Phase 3 Block -->
                 <div class="w-full text-center">
-                    <h3 class="text-2xl font-bold mb-1 text-primary-dark-custom">Phase 3: Practical Projects</h3> <!-- Reduced mb -->
+                    <h3 class="text-2xl font-bold mb-1 text-accent-custom">Phase 3: Practical Projects</h3> <!-- Changed to accent-custom -->
                     <div class="card p-4 mx-auto max-w-xs sm:max-w-sm md:max-w-md">
-                        <p class="font-semibold text-lg text-primary-dark-custom leading-tight">Continuously learn by doing.</p>
+                        <p class="font-semibold text-lg text-text-on-light-bg-custom leading-tight">Continuously learn by doing.</p>
                         <p class="text-sm text-text-on-light-bg-custom leading-tight">Ongoing</p>
                     </div>
                 </div>
@@ -284,9 +287,18 @@
                     <div class="card p-6 mx-auto w-full md:max-w-3xl">
                         <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">Critical Resources</h3>
                         <ul class="space-y-3 text-text-on-light-bg-custom">
-                            <li class="flex items-center"><span class="text-2xl mr-3">☁️</span><div><strong class="text-primary-medium-custom"><a href="https://trailhead.salesforce.com/" target="_blank">Salesforce Trailhead</a>:</strong> Master Einstein AI basics and business applications.</div></li>
-                            <li class="flex items-center"><span class="text-2xl mr-3">💬</span><div><strong class="text-primary-medium-custom"><a href="https://gemini.google.com/" target="_blank">Generative AI Tools</a>:</strong> Practice prompt engineering on ChatGPT & Google Gemini.</div></div></li>
-                            <li class="flex items-center"><span class="text-2xl mr-3">📺</span><div><strong class="text-accent-custom"><a href="https://www.gong.io/resources/webinars/" target="_blank">Targeted Webinars</a>:</strong> Learn from industry leaders like Gong and HubSpot.</div></li>
+                            <li class="flex items-center">
+                                <span class="text-2xl mr-3">☁️</span>
+                                <div><strong class="text-primary-medium-custom"><a href="https://trailhead.salesforce.com/" target="_blank">Salesforce Trailhead</a>:</strong> Master Einstein AI basics and business applications.</div>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-2xl mr-3">💬</span>
+                                <div><strong class="text-primary-medium-custom"><a href="https://gemini.google.com/" target="_blank">Generative AI Tools</a>:</strong> Practice prompt engineering on ChatGPT & Google Gemini.</div>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-2xl mr-3">📺</span>
+                                <div><strong class="text-primary-medium-custom"><a href="https://www.gong.io/resources/webinars/" target="_blank">Targeted Webinars</a>:</strong> Learn from industry leaders like Gong and HubSpot.</div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -385,30 +397,52 @@
             <!-- Moved AI interactive tools section AFTER platforms -->
             <section id="ai-interactive-tools" class="mb-12">
                 <h2 class="text-3xl font-bold text-center mb-8 text-accent-custom">Experiment with AI Tools</h2>
-                <div class="card grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- NEW API Key Note -->
+                <div class="bg-blue-100 text-blue-800 p-4 text-center text-sm font-medium rounded-md mx-auto mb-6 max-w-2xl border border-blue-200">
+                    The interactive tools below use the Gemini API. You must add your API key to the script for these features to function.
+                </div>
+                
+                <div class="card grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                     <div>
                         <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">✨ AI Concept Explainer: Clarify Complex Terms</h3>
                         <p class="mb-4 text-text-on-light-bg-custom">Quickly get concise, business-focused explanations for any AI term. This feature demonstrates how AI can simplify complex jargon for leaders.</p>
                         <input type="text" id="aiTermInput" placeholder="e.g., Machine Learning" class="w-full p-2 rounded-md mb-4 border border-color-border-custom focus-ring-accent-custom text-text-on-light-bg-custom">
                         <button id="explainAiTermBtn" class="ai-button w-full">Explain Term</button>
-                        <div id="aiExplanationLoading" class="hidden text-center mt-4 text-text-on-light-bg-custom">Loading...</div>
-                        <div id="aiExplanationOutput" class="mt-4 p-4 rounded-md bg-card-bg-custom border-color-border-custom text-text-on-light-bg-custom"></div>
+                        <div id="aiExplanationLoading" class="ai-loading-div hidden text-center mt-4 text-text-on-light-bg-custom">Loading...</div>
+                        <div id="aiExplanationOutput" class="ai-output-div mt-4 p-4 rounded-md hidden"></div>
                     </div>
-                     <div>
+                    <div>
                         <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">✨ General AI Use Case Idea Generator: Innovate Operations</h3>
                         <p class="mb-4 text-text-on-light-bg-custom">Spark new ideas! This tool can brainstorm practical AI use cases to improve general business operations and customer engagement.</p>
                         <input type="text" id="generalUseCaseInput" placeholder="e.g., Customer Onboarding" class="w-full p-2 rounded-md mb-4 border border-color-border-custom focus-ring-accent-custom text-text-on-light-bg-custom">
                         <button id="generateUseCaseBtn" class="ai-button w-full">Generate Use Case Idea</button>
-                        <div id="useCaseLoading" class="hidden text-center mt-4 text-text-on-light-bg-custom">Loading...</div>
-                        <div id="useCaseOutput" class="mt-4 p-4 rounded-md bg-card-bg-custom border-color-border-custom text-text-on-light-bg-custom"></div>
+                        <div id="useCaseLoading" class="ai-loading-div hidden text-center mt-4 text-text-on-light-bg-custom">Loading...</div>
+                        <div id="useCaseOutput" class="ai-output-div mt-4 p-4 rounded-md hidden"></div>
                     </div>
-                    <div class="md:col-span-2">
+                    <div class="lg:col-span-2">
                         <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">✨ Role-Specific AI Use Case Generator: Tailored Impact</h3>
                         <p class="mb-4 text-text-on-light-bg-custom">Discover how AI can specifically benefit your role. Enter a job title to generate tailored AI use case ideas for your domain.</p>
                         <input type="text" id="roleInput" placeholder="e.g., Sales Operations Lead" class="w-full p-2 rounded-md mb-4 border border-color-border-custom focus-ring-accent-custom text-text-on-light-bg-custom">
                         <button id="generateRoleUseCaseBtn" class="ai-button w-full">Generate Role-Specific Idea</button>
-                        <div id="roleUseCaseLoading" class="hidden text-center mt-4 text-text-on-light-bg-custom">Loading...</div>
-                        <div id="roleUseCaseOutput" class="mt-4 p-4 rounded-md bg-card-bg-custom border-color-border-custom text-text-on-light-bg-custom"></div>
+                        <div id="roleUseCaseLoading" class="ai-loading-div hidden text-center mt-4 text-text-on-light-bg-custom">Loading...</div>
+                        <div id="roleUseCaseOutput" class="ai-output-div mt-4 p-4 rounded-md hidden"></div>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">✨ AI-Powered Quiz Generator: Test Your Knowledge</h3>
+                        <p class="mb-4 text-text-on-light-bg-custom">Enter a topic and get a quick, multiple-choice question to test your knowledge and reinforce key concepts.</p>
+                        <input type="text" id="quizTopicInput" placeholder="e.g., Prompt Engineering" class="w-full p-2 rounded-md mb-4 border border-color-border-custom focus-ring-accent-custom text-text-on-light-bg-custom">
+                        <button id="generateQuizBtn" class="ai-button w-full">Generate Quiz Question</button>
+                        <div id="quizLoading" class="ai-loading-div hidden text-center mt-4 text-text-on-light-bg-custom">Loading...</div>
+                        <div id="quizOutput" class="ai-output-div mt-4 p-4 rounded-md hidden"></div>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <h3 class="font-bold text-xl mb-4 text-primary-dark-custom">✨ Executive Summary Tool: Distill Complex Information</h3>
+                        <p class="mb-4 text-text-on-light-bg-custom">Paste a longer text or article and have AI instantly generate a concise summary to save time and focus on key insights.</p>
+                        <textarea id="summaryTextInput" placeholder="Paste your text here..." class="w-full p-2 rounded-md mb-4 border border-color-border-custom focus-ring-accent-custom text-text-on-light-bg-custom h-32"></textarea>
+                        <button id="generateSummaryBtn" class="ai-button w-full">Generate Summary</button>
+                        <div id="summaryLoading" class="ai-loading-div hidden text-center mt-4 text-text-on-light-bg-custom">Loading...</div>
+                        <div id="summaryOutput" class="ai-output-div mt-4 p-4 rounded-md hidden"></div>
                     </div>
                 </div>
             </section>
@@ -436,8 +470,8 @@
         // For secure applications, API keys should be managed on a backend server.
         const GOOGLE_API_KEY = ""; 
 
-        // Utility function to make API calls
-        async function callGeminiAPI(prompt, outputDivId, loadingDivId, apiModel = 'gemini-2.0-flash') {
+        // Utility function to make API calls, including structured JSON responses
+        async function callGeminiAPI(prompt, outputDivId, loadingDivId, apiModel = 'gemini-2.5-flash-preview-05-20', jsonSchema = null) {
             const outputDiv = document.getElementById(outputDivId);
             const loadingDiv = document.getElementById(loadingDivId);
             
@@ -447,15 +481,25 @@
             outputDiv.classList.add('hidden');
 
             try {
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-
-                const requestBody = { contents: chatHistory };
+                let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                let requestBody = { contents: chatHistory };
                 
+                if (jsonSchema) {
+                    requestBody.generationConfig = {
+                        responseMimeType: "application/json",
+                        responseSchema: jsonSchema
+                    };
+                }
+
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${apiModel}:generateContent?key=${GOOGLE_API_KEY}`;
                 
                 if (!GOOGLE_API_KEY || GOOGLE_API_KEY === "") {
-                    throw new Error("API Key is missing. Please set GOOGLE_API_KEY in the script for AI features to work.");
+                    console.warn("API Key is missing. Using Gemini API with a temporary key. Please set GOOGLE_API_KEY in the script for AI features to work securely.");
+                    const displayMessage = `<p class="text-red-700">Error: API Key is missing. Please add a valid key to the code to enable this feature.</p>`;
+                    outputDiv.innerHTML = displayMessage;
+                    outputDiv.classList.remove('hidden');
+                    loadingDiv.classList.add('hidden');
+                    return null;
                 }
 
                 const response = await fetch(apiUrl, {
@@ -476,9 +520,20 @@
                     result.candidates[0].content.parts.length > 0) {
                     
                     const rawText = result.candidates[0].content.parts[0].text;
-                    outputDiv.innerHTML = `<p>${rawText}</p>`;
-                    outputDiv.classList.remove('hidden');
-                    return rawText;
+                    
+                    // If JSON schema was requested, parse the JSON
+                    if (jsonSchema) {
+                        try {
+                            const parsedJson = JSON.parse(rawText);
+                            return parsedJson;
+                        } catch (e) {
+                            throw new Error(`Failed to parse JSON response: ${rawText}`);
+                        }
+                    } else {
+                        outputDiv.innerHTML = `<p>${rawText}</p>`;
+                        outputDiv.classList.remove('hidden');
+                        return rawText;
+                    }
                 } else {
                     throw new Error("No content received from API.");
                 }
@@ -492,6 +547,8 @@
                 loadingDiv.classList.add('hidden');
             }
         }
+
+        // --- Event Listeners for existing features ---
 
         // AI Concept Explainer
         document.getElementById('explainAiTermBtn').addEventListener('click', async () => {
@@ -521,6 +578,93 @@
             }
             const prompt = `Generate one unique and practical AI use case for a business leader in the role of "${role}", with experience in Salesforce, RevOps, SalesOps, or Customer Success. The use case should focus on improving operations or customer engagement. Provide only the use case description, no intro or outro. Keep it concise.`;
             await callGeminiAPI(prompt, 'roleUseCaseOutput', 'roleUseCaseLoading');
+        });
+
+
+        // --- Event Listeners for new features ---
+
+        // AI-Powered Quiz Generator
+        document.getElementById('generateQuizBtn').addEventListener('click', async () => {
+            const topic = document.getElementById('quizTopicInput').value.trim();
+            const quizOutputDiv = document.getElementById('quizOutput');
+            const quizLoadingDiv = document.getElementById('quizLoading');
+
+            if (!topic) {
+                quizOutputDiv.innerHTML = '<p class="text-error-color-custom">Please enter a quiz topic.</p>';
+                quizOutputDiv.classList.remove('hidden');
+                return;
+            }
+
+            const quizSchema = {
+                type: "OBJECT",
+                properties: {
+                    "question": { "type": "STRING" },
+                    "options": {
+                        "type": "ARRAY",
+                        "items": { "type": "STRING" },
+                        "minItems": 4,
+                        "maxItems": 4
+                    },
+                    "correctAnswer": { "type": "STRING" }
+                },
+                "propertyOrdering": ["question", "options", "correctAnswer"]
+            };
+
+            const prompt = `Generate a multiple-choice quiz question about "${topic}" for a business leader. Provide the question, exactly four options, and the correct answer.`;
+            const quizData = await callGeminiAPI(prompt, 'quizOutput', 'quizLoading', 'gemini-2.5-flash-preview-05-20', quizSchema);
+
+            if (quizData) {
+                quizOutputDiv.innerHTML = `
+                    <p class="font-bold mb-3">${quizData.question}</p>
+                    <form id="quizForm" class="space-y-2">
+                        ${quizData.options.map(option => `
+                            <div class="flex items-center">
+                                <input type="radio" id="${option}" name="quizOption" value="${option}" class="mr-2">
+                                <label for="${option}">${option}</label>
+                            </div>
+                        `).join('')}
+                        <button type="submit" class="ai-button w-full mt-4">Check Answer</button>
+                    </form>
+                    <div id="quizResult" class="mt-4 p-3 rounded-md hidden"></div>
+                `;
+                quizOutputDiv.classList.remove('hidden');
+                
+                // Add event listener for the new quiz form
+                document.getElementById('quizForm').addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const selectedOption = document.querySelector('input[name="quizOption"]:checked');
+                    const quizResultDiv = document.getElementById('quizResult');
+
+                    if (!selectedOption) {
+                        quizResultDiv.innerHTML = '<p class="text-yellow-700">Please select an answer.</p>';
+                        quizResultDiv.className = 'mt-4 p-3 rounded-md bg-yellow-100 hidden';
+                        quizResultDiv.classList.remove('hidden');
+                        return;
+                    }
+
+                    if (selectedOption.value === quizData.correctAnswer) {
+                        quizResultDiv.innerHTML = `<p class="font-bold text-green-700">Correct! 🎉</p>`;
+                        quizResultDiv.className = 'mt-4 p-3 rounded-md bg-green-100 hidden';
+                        quizResultDiv.classList.remove('hidden');
+                    } else {
+                        quizResultDiv.innerHTML = `<p class="font-bold text-red-700">Incorrect. The correct answer is: <strong>${quizData.correctAnswer}</strong>.</p>`;
+                        quizResultDiv.className = 'mt-4 p-3 rounded-md bg-red-100 hidden';
+                        quizResultDiv.classList.remove('hidden');
+                    }
+                });
+            }
+        });
+
+        // Executive Summary Tool
+        document.getElementById('generateSummaryBtn').addEventListener('click', async () => {
+            const textToSummarize = document.getElementById('summaryTextInput').value.trim();
+            if (!textToSummarize) {
+                document.getElementById('summaryOutput').innerHTML = '<p class="text-error-color-custom">Please paste some text to summarize.</p>';
+                document.getElementById('summaryOutput').classList.remove('hidden');
+                return;
+            }
+            const prompt = `Please provide a concise executive summary of the following text, under 100 words:\n\n"${textToSummarize}"`;
+            await callGeminiAPI(prompt, 'summaryOutput', 'summaryLoading');
         });
     </script>
 </body>
